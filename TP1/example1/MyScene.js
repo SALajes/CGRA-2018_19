@@ -21,6 +21,7 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
+        this.tangram = new MyTangram(this);
         this.diamond = new MyDiamond(this);
         this.triangle = new MyTriangle(this);
         this.bigtriangle = new MyTriangleBig(this);
@@ -30,11 +31,12 @@ class MyScene extends CGFscene {
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.scaleFactor = 1;
-        this.displayTriangle = true;
-        this.displayDiamond = true;
-        this.displayTriangleBig = true;
-        this.displayTriangleSmall = true;;
-        this.displayParallelogram = true;
+        this.displayDiamond = false;
+        this.displayParallelogram = false;
+        this.displayTriangle = false;
+        this.displayTriangleBig = false;
+        this.displayTriangleSmall = false;
+        this.displayTangram = true;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -74,105 +76,26 @@ class MyScene extends CGFscene {
                     0.0, 0.0, 0.0, 1.0];
         this.multMatrix(sca);
 
-        // ---- BEGIN Primitives Transformation
-        //Diamond
-        var t1 = [1,   0,   0, 0,
-                  0,   1,   0, 0,
-                  0,   0,   1, 0,
-                  0.5, 4.5, 0, 1];
-        
-        this.pushMatrix();
-        this.multMatrix(t1);
-        
+        if(this.displayTangram){
+            this.tangram.display(this);
+        }
+
+        // ---- BEGIN Primitive drawing section
         if(this.displayDiamond){
             this.diamond.display();
         }
-        this.popMatrix();
-
-        //Big Triangle 1
-        this.pushMatrix();
-        this.rotate((-Math.PI/2), 0, 0, 1);
-        this.translate(-2, 0, 0);
-
-        if(this.displayTriangleBig){
-            this.bigtriangle.display();
-        }
-
-        this.popMatrix();
-
-        //Big Triangle 2
-        this.pushMatrix();
-        this.rotate((Math.PI/2), 0, 0, 1);
-        this.translate(-1, -1, 0);
-
-        if(this.displayTriangleBig){
-            this.bigtriangle.display();
-        }
-
-        this.popMatrix();
-
-        //Triangle
-        this.pushMatrix();
-        this.rotate(-(135 * Math.PI)/180, 0, 0, 1);
-        this.translate(Math.sqrt(2) + 1, 1, 0);
-
         if(this.displayTriangle){
-            this.triangle.display();
+    	    this.triangle.display();
         }
-
-        this.popMatrix();
-
-        //Parallelogram
-        this.pushMatrix();
-        this.scale(-1, 1, 1);
-        this.rotate((-Math.PI/2), 0, 0, 1);
-        this.translate(-2,0,0);
-
+        if(this.displayTriangleBig){
+    	    this.bigtriangle.display();
+        }
+        if(this.displayTriangleSmall){
+    	    this.smalltriangle.display();
+        }
         if(this.displayParallelogram){
             this.parallelogram.display();
         }
-
-        this.popMatrix();
-
-        //Small Triangle 1
-        this.pushMatrix();
-        this.translate(Math.sqrt(2) - 0.33, -(3/2 * Math.sqrt(2) + 1), 0);
-        this.rotate((135 * Math.PI)/180, 0, 0, 1);
-
-        if(this.displayTriangleSmall){
-            this.smalltriangle.display();
-        }
-
-        this.popMatrix();
-
-        //Small Triangle 2
-        this.pushMatrix();
-
-        if(this.displayTriangleSmall){
-            this.smalltriangle.display();
-        }
-
-        this.popMatrix();
-
-        // ---- END Primitives Transformation
-
-        // ---- BEGIN Primitive drawing section
-        // if(this.displayDiamond){
-        //     this.diamond.display();
-        // }
-        // if(this.displayTriangle){
-    	//     this.triangle.display();
-        // }
-        // if(this.displayTriangleBig){
-    	//     this.bigtriangle.display();
-        // }
-        // if(this.displayTriangleSmall){
-    	//     this.smalltriangle.display();
-        // }
-        // if(this.displayParallelogram){
-        //     this.parallelogram.display();
-        // }
-
         // ---- END Primitive drawing section
     }
 }
