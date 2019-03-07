@@ -33,7 +33,7 @@ class MyScene extends CGFscene {
         this.displayTriangle = true;
         this.displayDiamond = true;
         this.displayTriangleBig = true;
-        this.displayTriangleSmall = false;
+        this.displayTriangleSmall = true;;
         this.displayParallelogram = true;
     }
     initLights() {
@@ -136,6 +136,8 @@ class MyScene extends CGFscene {
 
         //Small Triangle 1
         this.pushMatrix();
+        this.translate(Math.sqrt(2) - 0.33, -(3/2 * Math.sqrt(2) + 1), 0);
+        this.rotate((135 * Math.PI)/180, 0, 0, 1);
 
         if(this.displayTriangleSmall){
             this.smalltriangle.display();
