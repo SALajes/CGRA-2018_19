@@ -22,21 +22,13 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.tangram = new MyTangram(this);
-        this.diamond = new MyDiamond(this);
-        this.triangle = new MyTriangle(this);
-        this.bigtriangle = new MyTriangleBig(this);
-        this.smalltriangle = new MyTriangleSmall(this);
-        this.parallelogram = new MyParallelogram(this);
+        this.cube = new MyUnitCube(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.scaleFactor = 1;
-        this.displayDiamond = false;
-        this.displayParallelogram = false;
-        this.displayTriangle = false;
-        this.displayTriangleBig = false;
-        this.displayTriangleSmall = false;
         this.displayTangram = true;
+        this.displayCube = true;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -76,26 +68,23 @@ class MyScene extends CGFscene {
                     0.0, 0.0, 0.0, 1.0];
         this.multMatrix(sca);
 
+        // ---- BEGIN Primitive drawing section
+        this.pushMatrix()
+        this.translate(0.5, 0, -0.5);
+        this.rotate(Math.PI/2, 1, 0, 0);
+        
         if(this.displayTangram){
             this.tangram.display(this);
         }
 
-        // ---- BEGIN Primitive drawing section
-        if(this.displayDiamond){
-            this.diamond.display();
+
+        this.pushMatrix();
+        this.translate(0, 0, -0.5);
+        if(this.displayCube){
+            this.cube.display();
         }
-        if(this.displayTriangle){
-    	    this.triangle.display();
-        }
-        if(this.displayTriangleBig){
-    	    this.bigtriangle.display();
-        }
-        if(this.displayTriangleSmall){
-    	    this.smalltriangle.display();
-        }
-        if(this.displayParallelogram){
-            this.parallelogram.display();
-        }
+        this.popMatrix();
+        this.popMatrix();
         // ---- END Primitive drawing section
     }
 }
