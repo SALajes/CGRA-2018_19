@@ -17,7 +17,8 @@ class MyTriangleBig extends CGFobject {
 
 		//Counter-clockwise reference of vertices
 		this.indices = [
-			0,2,1
+			0, 2, 1,
+			1, 2, 0 //clock wise so it can be seen both ways
 		];
 		this.primitiveType = this.scene.gl.TRIANGLES;
 		this.initGLBuffers();
