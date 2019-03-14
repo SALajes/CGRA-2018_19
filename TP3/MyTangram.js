@@ -16,6 +16,22 @@ class MyTangram extends CGFobject {
                 this.initMaterials(scene);
         }
 
+        enableNormalViz(){
+                this.diamond.enableNormalViz();
+                this.triangle.enableNormalViz();
+                this.bigtriangle.enableNormalViz();
+                this.smalltriangle.enableNormalViz();
+                this.parallelogram.enableNormalViz();
+        }
+
+        disableNormalViz(){
+                this.diamond.disableNormalViz();
+                this.triangle.disableNormalViz();
+                this.bigtriangle.disableNormalViz();
+                this.smalltriangle.disableNormalViz();
+                this.parallelogram.disableNormalViz();
+        }
+
         initMaterials(scene) {
                 // Orange Specular (no diffuse / ambient)
                 this.orange = new CGFappearance(scene);
