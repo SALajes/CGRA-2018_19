@@ -14,22 +14,6 @@ class MyTangram extends CGFobject {
                 this.smalltriangle = new MyTriangleSmall(scene);
                 this.parallelogram = new MyParallelogram(scene);
                 this.initMaterials(scene);
-
-                this.vertices = [
-                        this.diamond.vertices,
-                        this.triangle.vertices,
-                        this.bigtriangle.vertices,
-                        this.smalltriangle.vertices,
-                        this.parallelogram.vertices
-                ];
-        
-                this.normals = [
-                        this.diamond.normals,
-                        this.triangle.normals,
-                        this.bigtriangle.normals,
-                        this.smalltriangle.normals,
-                        this.parallelogram.normals
-                ];
         }
 
         initMaterials(scene) {
@@ -94,7 +78,7 @@ class MyTangram extends CGFobject {
 
                 scene.pushMatrix();
                 scene.multMatrix(t1);
-                this.green.apply();
+                scene.customMaterial.apply();
                 this.diamond.display();
                 scene.popMatrix();
 
