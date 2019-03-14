@@ -71,7 +71,7 @@ class MyTangram extends CGFobject {
 
         //Small Triangle 2
         scene.pushMatrix();
-        scene.translate(-(1+ Math.sqrt(2)), -(1 + Math.sqrt(2) + Math.sqrt(0.5)), 0);
+        scene.translate(-(1+ Math.sqrt(2)), -(3/2 * Math.sqrt(2) + 1), 0);
         scene.rotate(Math.PI/4, 0, 0, 1);
 
         this.smalltriangle.display();

@@ -69,23 +69,21 @@ class MyScene extends CGFscene {
         this.multMatrix(sca);
 
         // ---- BEGIN Primitive drawing section
-        this.pushMatrix();
-        this.translate(0.5, 1, 0.5);
-        this.rotate(-Math.PI/2, 1, 0, 0);
-
         if(this.displayTangram){
+            this.pushMatrix();
+            this.translate(1+ Math.sqrt(2) + Math.sqrt(2)/2, 1.05, 5.5);
+            this.rotate(-Math.PI/2, 1, 0, 0);
             this.tangram.display(this);
+            this.popMatrix();
         }
-        this.popMatrix();
-
-        this.pushMatrix();
-        this.translate(0.5, 0.5, 0.5);
 
         if(this.displayCube){
+            this.pushMatrix();
+            this.scale(2 + 1+ Math.sqrt(2) + Math.sqrt(2)/2, 1, 5.5 + (2 * Math.sqrt(2) + 1));
+            this.translate(0.5, 0.5, 0.5); 
             this.cube.display();
+            this.popMatrix();
         }
-
-        this.popMatrix();
         // ---- END Primitive drawing section
     }
 }
