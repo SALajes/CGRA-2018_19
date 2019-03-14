@@ -94,7 +94,10 @@ class MyTangram extends CGFobject {
 
                 scene.pushMatrix();
                 scene.multMatrix(t1);
-                scene.customMaterial.apply();
+                if(scene.selectedMaterial == 4) //Custom Material selected
+                        scene.customMaterial.apply();
+                else
+                        this.green.apply();
                 this.diamond.display();
                 scene.popMatrix();
 

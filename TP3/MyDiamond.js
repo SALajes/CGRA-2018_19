@@ -11,13 +11,13 @@ class MyDiamond extends CGFobject {
 	initBuffers() {
 		this.vertices = [
 			-1, 0, 0,	//0
-			-1, 0, 0,	//0
+			-1, 0, 0,	//1
 			0, -1, 0,	//2
-			0, -1, 0,	//2
+			0, -1, 0,	//3
 			0, 1, 0,	//4
-			0, 1, 0,	//4
+			0, 1, 0,	//5
 			1, 0, 0,	//6
-			1, 0, 0		//6
+			1, 0, 0		//7
 		];
 
 		this.normals = [
@@ -35,8 +35,8 @@ class MyDiamond extends CGFobject {
 		this.indices = [
 			0, 2, 4,
 			2, 6, 4,
-			4, 2, 0, //clock wise so it can be seen both ways
-			4, 6, 2
+			5, 3, 1, //clock wise so it can be seen both ways
+			5, 7, 3
 		];
 		this.primitiveType = this.scene.gl.TRIANGLES;
 		this.initGLBuffers();
