@@ -1,7 +1,7 @@
 /**
-* MyScene
-* @constructor
-*/
+ * MyScene
+ * @constructor
+ */
 class MyScene extends CGFscene {
     constructor() {
         super();
@@ -27,11 +27,17 @@ class MyScene extends CGFscene {
         this.pyramid = new MyPyramid(this, 3, 1);
         this.cube = new MyUnitCube(this);
         this.tangram = new MyTangram(this);
-        
+
         this.objects = [this.plane, this.pyramid, this.cone, this.cube, this.tangram];
 
         // Labels and ID's for object selection on MyInterface
-        this.objectIDs = { 'Plane': 0 , 'Pyramid': 1, 'Cone': 2, 'Cube': 3, 'Tangram': 4};
+        this.objectIDs = {
+            'Plane': 0,
+            'Pyramid': 1,
+            'Cone': 2,
+            'Cube': 3,
+            'Tangram': 4
+        };
 
         //Other variables connected to MyInterface
         this.selectedObject = 0;
@@ -54,7 +60,7 @@ class MyScene extends CGFscene {
 
         this.lights[1].setPosition(0.0, -1.0, 2.0, 1.0);
         this.lights[1].setDiffuse(1.0, 1.0, 1.0, 1.0);
-        this.lights[1].setSpecular(1.0, 1.0, 0.0, 1.0);
+        this.lights[1].setSpecular(1.0, 1.0, 1.0, 1.0);
         this.lights[1].disable();
         this.lights[1].setVisible(true);
         this.lights[1].update();
@@ -63,23 +69,21 @@ class MyScene extends CGFscene {
         this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(10, 10, 10), vec3.fromValues(0, 0, 0));
     }
 
-    hexToRgbA(hex)
-    {
+    hexToRgbA(hex) {
         var ret;
         //either we receive a html/css color or a RGB vector
-        if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
-            ret=[
-                parseInt(hex.substring(1,3),16).toPrecision()/255.0,
-                parseInt(hex.substring(3,5),16).toPrecision()/255.0,
-                parseInt(hex.substring(5,7),16).toPrecision()/255.0,
+        if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
+            ret = [
+                parseInt(hex.substring(1, 3), 16).toPrecision() / 255.0,
+                parseInt(hex.substring(3, 5), 16).toPrecision() / 255.0,
+                parseInt(hex.substring(5, 7), 16).toPrecision() / 255.0,
                 1.0
             ];
-        }
-        else
-            ret=[
-                hex[0].toPrecision()/255.0,
-                hex[1].toPrecision()/255.0,
-                hex[2].toPrecision()/255.0,
+        } else
+            ret = [
+                hex[0].toPrecision() / 255.0,
+                hex[1].toPrecision() / 255.0,
+                hex[2].toPrecision() / 255.0,
                 1.0
             ];
         return ret;
@@ -96,7 +100,7 @@ class MyScene extends CGFscene {
 
     };
 
-    updateObjectComplexity(){
+    updateObjectComplexity() {
         this.objects[this.selectedObject].updateBuffers(this.objectComplexity);
     }
 
@@ -123,6 +127,13 @@ class MyScene extends CGFscene {
         this.material3.setSpecular(1, 0, 0, 1.0);
         this.material3.setShininess(10.0);
 
+        // Wood Diffuse (no ambient, no specular)
+        this.material4 = new CGFappearance(this);
+        this.material4.setAmbient(0.0, 0.0, 0.0, 1.0);
+        this.material4.setDiffuse(135 / 255, 78 / 255, 0, 1.0);
+        this.material4.setSpecular(0, 0, 0, 1.0);
+        this.material4.setShininess(10.0);
+
         // Custom material (can be changed in the interface)
         // initially midrange values on ambient, diffuse and specular, on R, G and B respectively
 
@@ -136,10 +147,16 @@ class MyScene extends CGFscene {
 
         this.updateCustomMaterial();
 
-        this.materials = [this.material1, this.material2, this.material3, this.customMaterial];
+        this.materials = [this.material1, this.material2, this.material3, this.material4, this.customMaterial];
 
         // Labels and ID's for object selection on MyInterface
-        this.materialIDs = {'Red Ambient': 0, 'Red Diffuse': 1, 'Red Specular': 2, 'Custom': 3 };
+        this.materialIDs = {
+            'Red Ambient': 0,
+            'Red Diffuse': 1,
+            'Red Specular': 2,
+            'Wood Diffuse': 3,
+            'Custom': 4
+        };
     }
     display() {
         // ---- BEGIN Background, camera and axis setup
@@ -151,7 +168,7 @@ class MyScene extends CGFscene {
         this.loadIdentity();
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
-        
+
         this.lights[0].update();
         this.lights[1].update();
 
@@ -161,20 +178,21 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
-        this.materials[this.selectedMaterial].apply();
 
         this.pushMatrix();
-        this.scale(this.scaleFactor,this.scaleFactor,this.scaleFactor);
-        
+        this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
+
         if (this.displayNormals)
             this.objects[this.selectedObject].enableNormalViz();
         else
             this.objects[this.selectedObject].disableNormalViz();
-        
-        if(this.selectedObject == 4)
+
+        if (this.selectedObject == 4)
             this.objects[this.selectedObject].display(this);
-        else
+        else {
+            this.materials[this.selectedMaterial].apply();
             this.objects[this.selectedObject].display();
+        }
 
         this.popMatrix();
 
