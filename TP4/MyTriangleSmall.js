@@ -7,6 +7,7 @@ class MyTriangleSmall extends CGFobject {
 	constructor(scene) {
 		super(scene);
 		this.initBuffers();
+		this.texFlag = true;
 	}
 	initBuffers() {
 		this.vertices = [
@@ -34,8 +35,34 @@ class MyTriangleSmall extends CGFobject {
 			0, 4, 2,
 			3, 5, 1 //clock wise so it can be seen both ways
 		];
+
+		if(this.texFlag){
+			this.texCoords = [
+				0, 0,
+				0, 0,
+				0.25, 0.25,
+				0.25, 0.25,
+				0, 0.5,
+				0, 0.5
+			];
+		}
+		else{
+			this.texCoords = [
+				0.25, 0.75,
+				0.25, 0.75,
+				0.5, 0.5,
+				0.5, 0.5,
+				0.75, 0.75,
+				0.75, 0.75
+			];
+		}
+
 		this.primitiveType = this.scene.gl.TRIANGLES;
 		this.initGLBuffers();
+	}
+	swap() {
+		this.texFlag = !this.texFlag;
+		console.log("Swapped Small! texFlag =" + this.texFlag);
 	}
 }
 

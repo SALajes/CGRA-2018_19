@@ -43,6 +43,7 @@ class MyTangram extends CGFobject {
         }
 
         display() {
+                this.texture.apply();
                 // ---- BEGIN Primitives Transformation
                 //Diamond
                 var t1 = [1, 0, 0, 0,
@@ -53,7 +54,6 @@ class MyTangram extends CGFobject {
 
                 this.scene.pushMatrix();
                 this.scene.multMatrix(t1);
-                this.texture.apply();
                 this.diamond.display();
                 this.scene.popMatrix();
 
@@ -61,7 +61,7 @@ class MyTangram extends CGFobject {
                 this.scene.pushMatrix();
                 this.scene.translate(0, 2, 0);
                 this.scene.rotate((-Math.PI / 2), 0, 0, 1);
-                this.texture.apply();
+                this.bigtriangle.swap();
                 this.bigtriangle.display()
                 this.scene.popMatrix();
 
@@ -69,7 +69,7 @@ class MyTangram extends CGFobject {
                 this.scene.pushMatrix();
                 this.scene.translate(1, -1, 0);
                 this.scene.rotate((Math.PI / 2), 0, 0, 1);
-                this.texture.apply();
+                this.bigtriangle.swap();
                 this.bigtriangle.display();
                 this.scene.popMatrix();
 
@@ -77,7 +77,6 @@ class MyTangram extends CGFobject {
                 this.scene.pushMatrix();
                 this.scene.translate(-1, -(Math.sqrt(2) + 1), 0);
                 this.scene.rotate(-(135 * Math.PI) / 180, 0, 0, 1);
-                this.texture.apply();
                 this.triangle.display();
                 this.scene.popMatrix();
 
@@ -86,7 +85,6 @@ class MyTangram extends CGFobject {
                 this.scene.scale(-1, 1, 1);
                 this.scene.rotate((-Math.PI / 2), 0, 0, 1);
                 this.scene.translate(-2, 0, 0);
-                this.texture.apply();
                 this.parallelogram.display();
                 this.scene.popMatrix();
 
@@ -94,7 +92,7 @@ class MyTangram extends CGFobject {
                 this.scene.pushMatrix();
                 this.scene.translate(-1 + Math.sqrt(0.5) + Math.sqrt(2), -(3 / 2 * Math.sqrt(2) + 1), 0);
                 this.scene.rotate((135 * Math.PI) / 180, 0, 0, 1);
-                this.texture.apply()
+                this.smalltriangle.swap();
                 this.smalltriangle.display();
                 this.scene.popMatrix();
 
@@ -102,7 +100,7 @@ class MyTangram extends CGFobject {
                 this.scene.pushMatrix();
                 this.scene.translate(-(1 + Math.sqrt(2)), -(1 + Math.sqrt(2) + Math.sqrt(0.5)), 0);
                 this.scene.rotate(Math.PI / 4, 0, 0, 1);
-                this.texture.apply();
+                this.smalltriangle.swap();
                 this.smalltriangle.display();
                 this.scene.popMatrix();
                 // ---- END Primitives Transformation
