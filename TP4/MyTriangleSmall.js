@@ -36,17 +36,22 @@ class MyTriangleSmall extends CGFobject {
 			3, 5, 1 //clock wise so it can be seen both ways
 		];
 
+		this.texCoords = [
+			0.25, 0.75,
+			0.25, 0.75,
+			0.5, 0.5,
+			0.5, 0.5,
+			0.75, 0.75,
+			0.75, 0.75
+		];
+
+		this.primitiveType = this.scene.gl.TRIANGLES;
+		this.initGLBuffers();
+	}
+	swap() {
+		this.texFlag = !this.texFlag;
+		
 		if(this.texFlag){
-			this.texCoords = [
-				0, 0,
-				0, 0,
-				0.25, 0.25,
-				0.25, 0.25,
-				0, 0.5,
-				0, 0.5
-			];
-		}
-		else{
 			this.texCoords = [
 				0.25, 0.75,
 				0.25, 0.75,
@@ -56,13 +61,17 @@ class MyTriangleSmall extends CGFobject {
 				0.75, 0.75
 			];
 		}
-
-		this.primitiveType = this.scene.gl.TRIANGLES;
-		this.initGLBuffers();
-	}
-	swap() {
-		this.texFlag = !this.texFlag;
-		console.log("Swapped Small! texFlag =" + this.texFlag);
+		else{
+			this.texCoords = [
+				0, 0,
+				0, 0,
+				0.25, 0.25,
+				0.25, 0.25,
+				0, 0.5,
+				0, 0.5
+			];
+		}
+		this.updateTexCoordsGLBuffers();
 	}
 }
 

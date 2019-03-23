@@ -45,6 +45,8 @@ class MyTangram extends CGFobject {
         display() {
                 this.texture.apply();
                 // ---- BEGIN Primitives Transformation
+                this.texture.apply();
+
                 //Diamond
                 var t1 = [1, 0, 0, 0,
                         0, 1, 0, 0,
