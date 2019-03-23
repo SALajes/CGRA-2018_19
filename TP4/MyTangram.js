@@ -43,7 +43,6 @@ class MyTangram extends CGFobject {
         }
 
         display() {
-                this.texture.apply();
                 // ---- BEGIN Primitives Transformation
                 this.texture.apply();
 

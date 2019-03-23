@@ -49,7 +49,7 @@ class MyScene extends CGFscene {
         this.wrapS = 0;
         this.wrapT = 0;
         
-        this.displayQuad = true;
+        this.displayQuad = false;
         this.displayTangram = true;
 
         this.textures = [this.texture1, this.texture2, this.texture3];
