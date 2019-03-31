@@ -21,8 +21,14 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
+        this.prism = new MyPrism(this, 3, 1);
+        this.cylinder = new MyCylinder(this, 3, 1);
 
         //Objects connected to MyInterface
+        this.displayAxis = true;
+        this.displayNormals = false;
+        this.objectComplexity = 0.5;
+        this.scaleFactor = 2.0;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -39,6 +45,10 @@ class MyScene extends CGFscene {
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
     }
+    updateObjectComplexity() {
+        // this.prism.updateBuffers(this.objectComplexity);
+        this.cylinder.updateBuffers(this.objectComplexity);
+    }
     display() {
         // ---- BEGIN Background, camera and axis setup
         // Clear image and depth buffer everytime we update the scene
@@ -52,13 +62,16 @@ class MyScene extends CGFscene {
 
         // Draw axis
         this.axis.display();
-
+        
         //Apply default appearance
         this.setDefaultAppearance();
 
+        this.pushMatrix();
+        this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
+
         // ---- BEGIN Primitive drawing section
-
-
+        // this.prism.display();
+        this.cylinder.display();
         // ---- END Primitive drawing section
     }
 }
