@@ -13,9 +13,11 @@ class MyPrism extends CGFobject {
         this.vertices = [];
         this.indices = [];
         this.normals = [];
+        this.texCoords = [];
 
         var ang = 0;
         var alphaAng = 2*Math.PI/this.slices;
+        var coordX = 0;
 
         for(var i = 0; i < this.slices; i++){
             // All vertices have to be declared for a given face
@@ -62,6 +64,29 @@ class MyPrism extends CGFobject {
                 (4*i+1), (4*i+3), (4*i+2),
                 (4*i+2), (4*i+3), (4*i +1),
             ); 
+
+            //texture coords
+            this.texCoords.push(
+                coordX,1
+            );
+            
+            coordX += 1/this.slices;
+
+            this.texCoords.push(
+                coordX,1
+            );
+
+            coordX -= 1/this.slices;
+
+            this.texCoords.push(
+                coordX,0
+            );
+
+            coordX += 1/this.slices;
+
+            this.texCoords.push(
+                coordX,0
+            );
 
             ang+=alphaAng;
         }

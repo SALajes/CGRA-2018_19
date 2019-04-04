@@ -18,6 +18,7 @@ class MyScene extends CGFscene {
         this.gl.enable(this.gl.DEPTH_TEST);
         this.gl.enable(this.gl.CULL_FACE);
         this.gl.depthFunc(this.gl.LEQUAL);
+        this.enableTextures(true);
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
@@ -27,6 +28,8 @@ class MyScene extends CGFscene {
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.displayNormals = false;
+        this.displayPrism = true;
+        this.displayCyl = false;
         this.objectComplexity = 0.5;
         this.scaleFactor = 2.0;
     }
@@ -46,7 +49,7 @@ class MyScene extends CGFscene {
         this.setShininess(10.0);
     }
     updateObjectComplexity() {
-        // this.prism.updateBuffers(this.objectComplexity);
+        this.prism.updateBuffers(this.objectComplexity);
         this.cylinder.updateBuffers(this.objectComplexity);
     }
     display() {
@@ -61,17 +64,20 @@ class MyScene extends CGFscene {
         this.applyViewMatrix();
 
         // Draw axis
-        this.axis.display();
+        if(this.displayAxis)
+            this.axis.display();
         
         //Apply default appearance
         this.setDefaultAppearance();
 
         this.pushMatrix();
         this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
-
+        
         // ---- BEGIN Primitive drawing section
-        // this.prism.display();
-        this.cylinder.display();
+        if(this.displayPrism)
+            this.prism.display();
+        if(this.displayCyl)
+            this.cylinder.display();
         // ---- END Primitive drawing section
     }
 }
