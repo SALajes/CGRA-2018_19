@@ -8,7 +8,7 @@ class MyTangram extends CGFobject {
         super(scene);
 
         //Objects part of the Tangram
-		this.diamond = new MyDiamond(scene);
+	this.diamond = new MyDiamond(scene);
         this.triangle = new MyTriangle(scene);
         this.bigtriangle = new MyTriangleBig(scene);
         this.smalltriangle = new MyTriangleSmall(scene);

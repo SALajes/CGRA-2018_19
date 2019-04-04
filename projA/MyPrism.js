@@ -3,10 +3,11 @@
 * @constructor
 */
 class MyPrism extends CGFobject {
-    constructor(scene, slices, stacks) {
+    constructor(scene, slices, radius, height) {
         super(scene);
         this.slices = slices;
-        this.stacks = stacks;
+        this.radius = radius;
+        this.height = height;
         this.initBuffers();
     }
     initBuffers() {
@@ -22,15 +23,15 @@ class MyPrism extends CGFobject {
             // even if they are shared with others, as the normals 
             // in each face will be different
 
-            var sa=Math.sin(ang);
-            var saa=Math.sin(ang+alphaAng);
-            var ca=Math.cos(ang);
-            var caa=Math.cos(ang+alphaAng);
+            var sa=this.radius*Math.sin(ang);
+            var saa=this.radius*Math.sin(ang+alphaAng);
+            var ca=this.radius*Math.cos(ang);
+            var caa=this.radius*Math.cos(ang+alphaAng);
 
             this.vertices.push(ca, 0, -sa);
             this.vertices.push(caa, 0, -saa);
-            this.vertices.push(ca, 1, -sa);
-            this.vertices.push(caa, 1, -saa);
+            this.vertices.push(ca, this.height, -sa);
+            this.vertices.push(caa, this.height, -saa);
 
             var normal= [
                 saa-sa,
