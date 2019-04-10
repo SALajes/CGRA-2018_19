@@ -22,7 +22,9 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.tree = new MyTree(this, 4, 2, 6,4)
+        this.tree = new MyTree(this, 4, 2, 6,4);
+        this.treeGroup = new MyTreeGroupPatch(this);
+        this.treeRow = new MyTreeRowPatch(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -74,7 +76,7 @@ class MyScene extends CGFscene {
         
         // ---- BEGIN Primitive drawing section
         // this.prism.display();
-        this.tree.display(this);
+        this.treeRow.display(this);
         // ---- END Primitive drawing section
     }
 }

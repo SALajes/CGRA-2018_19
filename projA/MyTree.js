@@ -12,7 +12,7 @@ class MyTree extends CGFobject {
     display(scene) {
         scene.pushMatrix();
         scene.translate(0, this.trunkHeight, 0);
-        this.leafs.display()
+        this.leafs.display();
         scene.popMatrix();
 
         this.trunk.display();
