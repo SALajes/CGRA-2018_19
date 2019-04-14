@@ -6,53 +6,39 @@ class MyHouse extends CGFobject {
     constructor(scene){
         super(scene);
         
-        this.trees = [];
-
-        var tree = new MyTree(scene, 8, 2, 12, 8);
-
-        this.trees.push(tree);
-
-        tree = new MyTree(scene, 7, 2, 14, 7);
-
-        this.trees.push(tree, tree);
-
-        tree = new MyTree(scene, 6, 1, 11, 5);
-
-        this.trees.push(tree, tree);
-
-        tree = new MyTree(scene, 9, 2, 16, 7);
-
-        this.trees.push(tree);
+        this.cube = new MyUnitCube(scene);
+        this.roof = new MyPyramid(scene, 4, 4);
+        this.pillar = new MyPrism(scene,8, 0.2, 1);
     }
     display(scene) {
-        scene.pushMatrix();
-        scene.translate(-29, 0, -1);
-        this.trees[0].display(scene);
-        scene.popMatrix();
+        var a = 0.75;
+
+        for(var i = 1; i <= 4; i++){
+            scene.pushMatrix();
+
+            if(i == 1)
+                scene.translate(a, 0, a);
+            else if(i == 2)
+                scene.translate(-a, 0, -a);
+            else if(i == 3)
+                scene.translate(-a, 0, a);
+            else 
+                scene.translate(a, 0, -a);
+
+            this.pillar.display();
+            scene.popMatrix();
+        }
 
         scene.pushMatrix();
-        scene.translate(-17, 0, 2);
-        this.trees[2].display(scene);
-        scene.popMatrix();
+        scene.translate(0, 1, 0);
+        scene.scale(1.35, 0.6, 1.35);
+        scene.rotate(Math.PI/4, 0, 1, 0);
+        this.roof.display();
+        scene.popMatrix();   
 
         scene.pushMatrix();
-        scene.translate(-5, 0, -3);
-        this.trees[5].display(scene);
-        scene.popMatrix();
-
-        scene.pushMatrix();
-        scene.translate(9, 0, 0);
-        this.trees[3].display(scene);
-        scene.popMatrix();
-
-        scene.pushMatrix();
-        scene.translate(15, 0, 1);
-        this.trees[4].display(scene);
-        scene.popMatrix();
-
-        scene.pushMatrix();
-        scene.translate(27, 0, -1);
-        this.trees[1].display(scene);
+        scene.translate(0, 0.5, 0);
+        this.cube.display();
         scene.popMatrix();
     }
     
