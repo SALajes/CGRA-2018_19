@@ -92,7 +92,6 @@ class MyPrism extends CGFobject {
             ang+=alphaAng;
         }
 
-
         //Base drawing
         ang = 0;
 
