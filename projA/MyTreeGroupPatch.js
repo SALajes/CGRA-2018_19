@@ -24,60 +24,50 @@ class MyTreeGroupPatch extends CGFobject {
 
         this.trees.push(tree, tree);
     }
-    display(scene) {
-        scene.pushMatrix();
-        scene.translate(-13, 0, -15);
-        this.trees[5].display(scene);
-        scene.popMatrix();
+    display() {
+        this.scene.pushMatrix();
+        this.scene.translate(-13, 0, -15);
+        this.trees[5].display(this.scene);
+        this.scene.popMatrix();
 
-        scene.pushMatrix();
-        scene.translate(-12, 0, 2);
-        this.trees[3].display(scene);
-        scene.popMatrix();
+        this.scene.pushMatrix();
+        this.scene.translate(-12, 0, 2);
+        this.trees[3].display(this.scene);
+        this.scene.popMatrix();
 
-        scene.pushMatrix();
-        scene.translate(-15, 0, 16);
-        this.trees[2].display(scene);
-        scene.popMatrix();
+        this.scene.pushMatrix();
+        this.scene.translate(-15, 0, 16);
+        this.trees[2].display(this.scene);
+        this.scene.popMatrix();
 
-        scene.pushMatrix();
-        scene.translate(0, 0, -12);
-        this.trees[0].display(scene);
-        scene.popMatrix();
+        this.scene.pushMatrix();
+        this.scene.translate(0, 0, -12);
+        this.trees[0].display(this.scene);
+        this.scene.popMatrix();
 
-        scene.pushMatrix();
-        scene.translate(0, 0, 2);
-        this.trees[8].display(scene);
-        scene.popMatrix();
+        this.scene.pushMatrix();
+        this.scene.translate(0, 0, 2);
+        this.trees[8].display(this.scene);
+        this.scene.popMatrix();
 
-        scene.pushMatrix();
-        scene.translate(2, 0, 14);
-        this.trees[4].display(scene);
-        scene.popMatrix();
+        this.scene.pushMatrix();
+        this.scene.translate(2, 0, 14);
+        this.trees[4].display(this.scene);
+        this.scene.popMatrix();
 
-        scene.pushMatrix();
-        scene.translate(12, 0, -13);
-        this.trees[7].display(scene);
-        scene.popMatrix();
+        this.scene.pushMatrix();
+        this.scene.translate(12, 0, -13);
+        this.trees[7].display(this.scene);
+        this.scene.popMatrix();
 
-        scene.pushMatrix();
-        scene.translate(14, 0, 2);
-        this.trees[1].display(scene);
-        scene.popMatrix();
+        this.scene.pushMatrix();
+        this.scene.translate(14, 0, 2);
+        this.trees[1].display(this.scene);
+        this.scene.popMatrix();
 
-        scene.pushMatrix();
-        scene.translate(13, 0, 15);
-        this.trees[6].display(scene);
-        scene.popMatrix();
-    }
-    
-    updateBuffers(complexity){
-        this.slices = 3 + Math.round(9 * complexity); //complexity varies 0-1, so slices varies 3-12
-
-        // reinitialize buffers
-        this.initBuffers();
-        this.initNormalVizBuffers();
+        this.scene.pushMatrix();
+        this.scene.translate(13, 0, 15);
+        this.trees[6].display(this.scene);
+        this.scene.popMatrix();
     }
 }
-
-

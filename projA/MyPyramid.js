@@ -13,10 +13,12 @@ class MyPyramid extends CGFobject {
         this.vertices = [];
         this.indices = [];
         this.normals = [];
+        this.texCoords = [];
 
         //Base center vertex
         this.vertices.push(0,0,0);
         this.normals.push(0,-1,0);
+        this.texCoords.push(0.5, 0.5);
 
         var ang = 0;
         var alphaAng = 2*Math.PI/this.slices;
@@ -63,8 +65,14 @@ class MyPyramid extends CGFobject {
             this.normals.push(0,-1,0);
             this.normals.push(0,-1,0);
 
-            this.indices.push(5*i+1, (5*i+2), (5*i+3) );
+            this.indices.push(5*i+1, (5*i+2), (5*i+3));
             this.indices.push((5*i+5), (5*i+4), 0);
+
+            this.texCoords.push(0.5, 0.5);
+            this.texCoords.push(0.5*ca+0.5, 0.5*sa+0.5);
+            this.texCoords.push(0.5*caa+0.5, 0.5*saa+0.5);
+            this.texCoords.push(0.5*ca+0.5, 0.5*sa+0.5);
+            this.texCoords.push(0.5*caa+0.5, 0.5*saa+0.5);
 
             ang+=alphaAng;
         }
