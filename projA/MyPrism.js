@@ -92,6 +92,30 @@ class MyPrism extends CGFobject {
             ang+=alphaAng;
         }
 
+
+        //Base drawing
+        ang = 0;
+
+        for(i = 0; i < this.slices; i++){
+            sa=this.radius*Math.sin(ang);
+            ca=this.radius*Math.cos(ang);
+
+            this.vertices.push(ca, 0, -sa);
+            this.vertices.push(ca, this.height, -sa);
+
+            this.normals.push(0,-1,0);
+            this.normals.push(0,1,0);
+
+            this.indices.push((2*i+2) % (2*this.slices) + 4*this.slices, 4*this.slices+(2*i), 6*this.slices);
+            this.indices.push(6*this.slices+1, 4*this.slices+(2*i+1), (2*i+3) % (2*this.slices) + 4*this.slices);
+
+            ang+=alphaAng;
+        }
+        this.vertices.push(0,0,0);
+        this.vertices.push(0,this.height,0);
+        this.normals.push(0,-1,0);
+        this.normals.push(0,1,0);
+
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();
     }
