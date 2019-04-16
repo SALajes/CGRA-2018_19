@@ -6,8 +6,8 @@ class MyTree extends CGFobject {
     constructor(scene,trunkHeight,trunkRadius,treeTopHeight,treeTopRadius){//,trunkTexture,treeTopTexture) {
         super(scene);
         this.trunkHeight = trunkHeight;
-        this.trunk = new MyCylinder(scene, 10, trunkRadius, trunkHeight);
-        this.leafs = new MyCone(scene, 10, treeTopRadius, treeTopHeight);
+        this.trunk = new MyCylinder(scene, 8, trunkRadius, trunkHeight);
+        this.leafs = new MyCone(scene, 8, treeTopRadius, treeTopHeight);
         this.initMaterials(scene);
     }
     initMaterials(scene) {
