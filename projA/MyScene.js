@@ -24,7 +24,7 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.tree = new MyTree(this, 4, 2, 6,4);
-        this.treeGroup = new MyTreeRowPatch(this);
+        this.treeGroup = new MyTreeGroupPatch(this);
         this.house = new MyHouse(this);
         this.prism = new MyPrism(this, 4, 1, 1);
         this.cylinder = new MyCylinder(this, 4, 1, 1);
@@ -96,7 +96,7 @@ class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
         // this.cylinder.display();
         // this.cone.display();
-        // this.treeGroup.display();
+        this.treeGroup.display();
         // this.bottomTex.apply();
         // this.prism.display();
         // this.pyramid.display();

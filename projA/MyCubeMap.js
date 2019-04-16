@@ -1,7 +1,7 @@
 class MyCubeMap extends CGFobject {
     constructor(scene) {
         super(scene);
-        this.scaleFactor = 50; //For controlling the cubemap's size
+        this.scaleFactor = 100; //For controlling the cubemap's size
         this.initMaterials(scene);
         this.initBuffers();
     }
