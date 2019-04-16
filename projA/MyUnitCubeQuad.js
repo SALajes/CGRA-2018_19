@@ -15,7 +15,7 @@ class MyUnitCubeQuad extends CGFobject {
         this.sideTex.setDiffuse(0.7, 0.7, 0.7, 1.0);
         this.sideTex.setSpecular(0.5, 0.5, 0.5, 1.0);
         this.sideTex.setShininess(1.0);
-        this.sideTex.loadTexture('images/mineSide.png');
+        this.sideTex.loadTexture('textures/mineSide.png');
         this.sideTex.setTextureWrap('REPEAT', 'REPEAT');
 
         this.topTex = new CGFappearance(scene);
@@ -23,7 +23,7 @@ class MyUnitCubeQuad extends CGFobject {
         this.topTex.setDiffuse(0.7, 0.7, 0.7, 1.0);
         this.topTex.setSpecular(0.5, 0.5, 0.5, 1.0);
         this.topTex.setShininess(1.0);
-        this.topTex.loadTexture('images/mineTop.png');
+        this.topTex.loadTexture('textures/mineTop.png');
         this.topTex.setTextureWrap('REPEAT', 'REPEAT');
 
         this.bottomTex = new CGFappearance(scene);
@@ -31,7 +31,7 @@ class MyUnitCubeQuad extends CGFobject {
         this.bottomTex.setDiffuse(0.7, 0.7, 0.7, 1.0);
         this.bottomTex.setSpecular(0.5, 0.5, 0.5, 1.0);
         this.bottomTex.setShininess(1.0);
-        this.bottomTex.loadTexture('images/mineBottom.png');
+        this.bottomTex.loadTexture('textures/mineBottom.png');
         this.bottomTex.setTextureWrap('REPEAT', 'REPEAT');
     }
     display() {
