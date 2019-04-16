@@ -1,28 +1,48 @@
 /**
-* MyHouse
-* @constructor
-*/
+ * MyHouse
+ * @constructor
+ */
 class MyHouse extends CGFobject {
-    constructor(scene){
+    constructor(scene) {
         super(scene);
-        
+
         this.cube = new MyUnitCube(scene);
         this.roof = new MyPyramid(scene, 4, 4);
-        this.pillar = new MyPrism(scene,8, 0.2, 1);
+        this.pillar = new MyPrism(scene, 8, 0.2, 1);
+        this.panel = new MySolarPanel(scene);
+        this.initMaterials(scene);
+    }
+    initMaterials(scene) {
+        this.pillarTex = new CGFappearance(scene);
+        this.pillarTex.setAmbient(0.1, 0.1, 0.1, 1.0);
+        this.pillarTex.setDiffuse(0.4, 0.4, 0.4, 1.0);
+        this.pillarTex.setSpecular(0.8, 0.8, 0.8, 1.0);
+        this.pillarTex.setShininess(1.0);
+        this.pillarTex.loadTexture('textures/column.png');
+        this.pillarTex.setTextureWrap('REPEAT', 'REPEAT');
+
+        this.trunkTex = new CGFappearance(scene);
+        this.trunkTex.setAmbient(0.3, 0.3, 0.3, 1.0);
+        this.trunkTex.setDiffuse(0.9, 0.9, 0.9, 1.0);
+        this.trunkTex.setSpecular(0.1, 0.1, 0.1, 1.0);
+        this.trunkTex.setShininess(1.0);
+        this.trunkTex.loadTexture('textures/tree_trunk.png');
+        this.trunkTex.setTextureWrap('REPEAT', 'REPEAT');
     }
     display() {
         var a = 0.75;
 
-        for(var i = 1; i <= 4; i++){
+        this.pillarTex.apply();
+        for (var i = 1; i <= 4; i++) {
             this.scene.pushMatrix();
 
-            if(i == 1)
+            if (i == 1)
                 this.scene.translate(a, 0, a);
-            else if(i == 2)
+            else if (i == 2)
                 this.scene.translate(-a, 0, -a);
-            else if(i == 3)
+            else if (i == 3)
                 this.scene.translate(-a, 0, a);
-            else 
+            else
                 this.scene.translate(a, 0, -a);
 
             this.pillar.display();
@@ -32,13 +52,19 @@ class MyHouse extends CGFobject {
         this.scene.pushMatrix();
         this.scene.translate(0, 1, 0);
         this.scene.scale(1.35, 0.6, 1.35);
-        this.scene.rotate(Math.PI/4, 0, 1, 0);
+        this.scene.rotate(Math.PI / 4, 0, 1, 0);
         this.roof.display();
-        this.scene.popMatrix();   
+        this.scene.popMatrix();
 
         this.scene.pushMatrix();
         this.scene.translate(0, 0.5, 0);
         this.cube.display();
+        this.scene.popMatrix();
+
+        this.scene.pushMatrix();
+        this.scene.translate(-0.25,1.7,0);
+        this.scene.rotate(Math.asin(1/Math.sqrt(1.5)),1,0,0);
+        this.panel.display();
         this.scene.popMatrix();
     }
 }

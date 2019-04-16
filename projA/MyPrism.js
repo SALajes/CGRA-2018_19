@@ -107,8 +107,9 @@ class MyPrism extends CGFobject {
 
             this.indices.push((2*i+2) % (2*this.slices) + 4*this.slices, 4*this.slices+(2*i), 6*this.slices);
             this.indices.push(6*this.slices+1, 4*this.slices+(2*i+1), (2*i+3) % (2*this.slices) + 4*this.slices);
-            this.texCoords.push(0.5*cal+0.5, 0.5*sal+0.5);
-            this.texCoords.push(0.5*cal+0.5, 0.5*sal+0.5);
+            this.texCoords.push(
+                0,0,
+                0,0);
 
             ang+=alphaAng;
         }
@@ -117,8 +118,8 @@ class MyPrism extends CGFobject {
         this.normals.push(0,-1,0);
         this.normals.push(0,1,0);
         this.texCoords.push(
-            0.5,0.5,
-            0.5,0.5);
+            0,0,
+            0,0);
 
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();

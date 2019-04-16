@@ -10,6 +10,7 @@ class MyScene extends CGFscene {
         super.init(application);
         this.initCameras();
         this.initLights();
+        this.initMaterials();
 
         //Background color
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -22,9 +23,14 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        // this.tree = new MyTree(this, 4, 2, 6,4);
-        // this.treeGroup = new MyTreeGroupPatch(this);
+        this.tree = new MyTree(this, 4, 2, 6,4);
+        this.treeGroup = new MyTreeRowPatch(this);
         this.house = new MyHouse(this);
+        this.prism = new MyPrism(this, 4, 1, 1);
+        this.cylinder = new MyCylinder(this, 4, 1, 1);
+        this.cone = new MyCone(this, 4, 1, 1);
+        this.pyramid = new MyPyramid(this, 4, 4);
+        this.panel = new MySolarPanel(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -43,6 +49,15 @@ class MyScene extends CGFscene {
     initCameras() {
         this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
     }
+    initMaterials() {
+        this.bottomTex = new CGFappearance(this);
+        this.bottomTex.setAmbient(0.1, 0.1, 0.1, 1.0);
+        this.bottomTex.setDiffuse(0.7, 0.7, 0.7, 1.0);
+        this.bottomTex.setSpecular(0.5, 0.5, 0.5, 1.0);
+        this.bottomTex.setShininess(1.0);
+        this.bottomTex.loadTexture('textures/tree_trunk.png');
+        this.bottomTex.setTextureWrap('REPEAT', 'REPEAT');
+    }
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
         this.setDiffuse(0.2, 0.4, 0.8, 1.0);
@@ -50,8 +65,10 @@ class MyScene extends CGFscene {
         this.setShininess(10.0);
     }
     updateObjectComplexity() {
-        // this.prism.updateBuffers(this.objectComplexity);
+        this.prism.updateBuffers(this.objectComplexity);
         // this.cylinder.updateBuffers(this.objectComplexity);
+        // this.pyramid.updateBuffers(this.objectComplexity);
+        // this.tree.updateBuffers(this.objectComplexity);
     }
     display() {
         // ---- BEGIN Background, camera and axis setup
@@ -75,11 +92,17 @@ class MyScene extends CGFscene {
         this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
         
         // ---- BEGIN Primitive drawing section
+        // this.cylinder.display();
+        // this.cone.display();
+        // this.treeGroup.display();
+        // this.bottomTex.apply();
         // this.prism.display();
+        // this.pyramid.display();
         this.pushMatrix();
         this.scale(2,3,2);
         this.house.display(this);
         this.popMatrix();
+        // this.panel.display();
         // ---- END Primitive drawing section
     }
 }
