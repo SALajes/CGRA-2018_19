@@ -6,7 +6,7 @@ class MyHouse extends CGFobject {
     constructor(scene) {
         super(scene);
 
-        this.cube = new MyUnitCube(scene);
+        this.cube = new MyUnitCubeQuad(scene);
         this.roof = new MyPyramid(scene, 4, 4);
         this.pillar = new MyPrism(scene, 8, 0.2, 1);
         this.panel = new MySolarPanel(scene);
