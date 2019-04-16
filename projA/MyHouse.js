@@ -33,6 +33,7 @@ class MyHouse extends CGFobject {
         var a = 0.75;
 
         this.pillarTex.apply();
+        
         for (var i = 1; i <= 4; i++) {
             this.scene.pushMatrix();
 
