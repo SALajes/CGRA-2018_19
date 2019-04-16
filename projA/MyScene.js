@@ -10,7 +10,6 @@ class MyScene extends CGFscene {
         super.init(application);
         this.initCameras();
         this.initLights();
-        this.initMaterials();
 
         //Background color
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -36,29 +35,22 @@ class MyScene extends CGFscene {
 
         //Objects connected to MyInterface
         this.displayAxis = true;
-        this.displayNormals = false;
-        this.displayPrism = true;
-        this.displayCyl = false;
+        this.textures = true;
+        this.mode = 0;
         this.objectComplexity = 0.5;
         this.scaleFactor = 2.0;
+
+        //For drop-down menu
+        this.modeId = { 'Day': 0, 'Night': 1};
     }
     initLights() {
-        this.lights[0].setPosition(15, 2, 5, 1);
-        this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
+        this.lights[0].setPosition(0, 99, 0, 1);
+        this.lights[0].setDiffuse(1.0, 0.5, 0.5, 1.0);
         this.lights[0].enable();
         this.lights[0].update();
     }
     initCameras() {
         this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
-    }
-    initMaterials() {
-        this.bottomTex = new CGFappearance(this);
-        this.bottomTex.setAmbient(0.1, 0.1, 0.1, 1.0);
-        this.bottomTex.setDiffuse(0.7, 0.7, 0.7, 1.0);
-        this.bottomTex.setSpecular(0.5, 0.5, 0.5, 1.0);
-        this.bottomTex.setShininess(1.0);
-        this.bottomTex.loadTexture('textures/tree_trunk.png');
-        this.bottomTex.setTextureWrap('REPEAT', 'REPEAT');
     }
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -67,10 +59,21 @@ class MyScene extends CGFscene {
         this.setShininess(10.0);
     }
     updateObjectComplexity() {
-        this.prism.updateBuffers(this.objectComplexity);
+        // this.prism.updateBuffers(this.objectComplexity);
         // this.cylinder.updateBuffers(this.objectComplexity);
         // this.pyramid.updateBuffers(this.objectComplexity);
         // this.tree.updateBuffers(this.objectComplexity);
+    }
+    updateTextures(){
+        this.enableTextures(this.textures);
+    }
+    updateDayNight(){
+        // if(this.mode){
+        // }
+        // else{
+            // 
+        // }
+        this.map.updateTex();
     }
     display() {
         // ---- BEGIN Background, camera and axis setup

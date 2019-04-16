@@ -2,6 +2,7 @@ class MyCubeMap extends CGFobject {
     constructor(scene) {
         super(scene);
         this.scaleFactor = 100; //For controlling the cubemap's size
+        this.currentTex = 0;
         this.initMaterials(scene);
         this.initBuffers();
     }
@@ -106,19 +107,39 @@ class MyCubeMap extends CGFobject {
         this.initGLBuffers();
     }
     initMaterials(scene) {
-        this.mapTex = new CGFappearance(scene);
-        this.mapTex.setAmbient(1, 1, 1, 1.0);
-        this.mapTex.setDiffuse(0.5, 0.5, 0.5, 1.0);
-        this.mapTex.setSpecular(0, 0, 0, 1.0);
-        this.mapTex.setShininess(1.0);
-        this.mapTex.loadTexture('textures/forest.png');
-        this.mapTex.setTextureWrap('REPEAT', 'REPEAT');
+        this.textures = [];
+
+        this.dayTex = new CGFappearance(scene);
+        this.dayTex.setAmbient(1, 1, 1, 1.0);
+        this.dayTex.setDiffuse(0.5, 0.5, 0.5, 1.0);
+        this.dayTex.setSpecular(0, 0, 0, 1.0);
+        this.dayTex.setShininess(1.0);
+        this.dayTex.loadTexture('textures/forest.png');
+        this.dayTex.setTextureWrap('REPEAT', 'REPEAT');
+
+        this.nightTex = new CGFappearance(scene);
+        this.nightTex.setAmbient(1, 1, 1, 1.0);
+        this.nightTex.setDiffuse(0.5, 0.5, 0.5, 1.0);
+        this.nightTex.setSpecular(0, 0, 0, 1.0);
+        this.nightTex.setShininess(1.0);
+        this.nightTex.loadTexture('textures/forest_night.png');
+        this.nightTex.setTextureWrap('REPEAT', 'REPEAT');
+
+        this.textures.push(this.dayTex, this.nightTex);
     }
     display() {
-        this.mapTex.apply();
+        this.textures[this.currentTex].apply();
         this.scene.pushMatrix();
         this.scene.scale(this.scaleFactor,this.scaleFactor,this.scaleFactor);
         super.display();
         this.scene.popMatrix();
+    }
+    updateTex(){
+        if(this.currentTex == 0)
+            this.currentTex = 1;
+        else
+            this.currentTex = 0;
+
+        this.display();
     }
 }
