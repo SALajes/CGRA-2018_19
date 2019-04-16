@@ -62,8 +62,9 @@ class MyHouse extends CGFobject {
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
-        this.scene.translate(-0.25,1.7,0);
-        this.scene.rotate(Math.asin(1/Math.sqrt(1.5)),1,0,0);
+        this.scene.translate(-0.2,1.43,0.3);
+        this.scene.rotate(Math.asin(1/Math.sqrt(3.5)),1,0,0);
+        this.scene.scale(0.8,0.8,0.8);
         this.panel.display();
         this.scene.popMatrix();
     }
