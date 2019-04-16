@@ -6,7 +6,7 @@ class MyHouse extends CGFobject {
     constructor(scene) {
         super(scene);
 
-        this.cube = new MyUnitCubeQuad(scene);
+        this.cube = new MyUnitCubeQuad(scene,'textures/house_bottom.png','textures/house_walls.png','textures/house_bottom.png');
         this.roof = new MyPyramid(scene, 4, 4);
         this.pillar = new MyPrism(scene, 8, 0.2, 1);
         this.panel = new MySolarPanel(scene);
@@ -21,13 +21,13 @@ class MyHouse extends CGFobject {
         this.pillarTex.loadTexture('textures/column.png');
         this.pillarTex.setTextureWrap('REPEAT', 'REPEAT');
 
-        this.trunkTex = new CGFappearance(scene);
-        this.trunkTex.setAmbient(0.3, 0.3, 0.3, 1.0);
-        this.trunkTex.setDiffuse(0.9, 0.9, 0.9, 1.0);
-        this.trunkTex.setSpecular(0.1, 0.1, 0.1, 1.0);
-        this.trunkTex.setShininess(1.0);
-        this.trunkTex.loadTexture('textures/tree_trunk.png');
-        this.trunkTex.setTextureWrap('REPEAT', 'REPEAT');
+        this.roofTex = new CGFappearance(scene);
+        this.roofTex.setAmbient(0.1, 0.1, 0.1, 1.0);
+        this.roofTex.setDiffuse(1.0, 1.0, 1.0, 1.0);
+        this.roofTex.setSpecular(0.2, 0.2, 0.2, 1.0);
+        this.roofTex.setShininess(1.0);
+        this.roofTex.loadTexture('textures/alt_roof.png');
+        this.roofTex.setTextureWrap('REPEAT', 'REPEAT');
     }
     display() {
         var a = 0.75;
@@ -50,6 +50,7 @@ class MyHouse extends CGFobject {
             this.scene.popMatrix();
         }
 
+        this.roofTex.apply();
         this.scene.pushMatrix();
         this.scene.translate(0, 1, 0);
         this.scene.scale(1.35, 0.6, 1.35);

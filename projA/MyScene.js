@@ -101,7 +101,7 @@ class MyScene extends CGFscene {
         // this.pyramid.display();
         // this.pushMatrix();
         // this.scale(2,3,2);
-         //this.house.display();
+        // this.house.display();
         // this.popMatrix();
         // this.panel.display();
 
