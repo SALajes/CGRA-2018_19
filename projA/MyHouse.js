@@ -34,7 +34,7 @@ class MyHouse extends CGFobject {
         var a = 0.75;
 
         this.scene.pushMatrix();
-        this.scene.translate(-0.05, 0.90/2, 0.501);
+        this.scene.translate(-0.05, 0.90/2, 0.505);
         this.door.display();
         this.scene.popMatrix();
 

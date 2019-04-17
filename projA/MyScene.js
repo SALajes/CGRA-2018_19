@@ -33,6 +33,7 @@ class MyScene extends CGFscene {
         this.hill10 = new MyVoxelHill(this, 10);
         this.map = new MyCubeMap(this);
         this.floor = new MyFloor(this);
+        this.fireplace = new MyFireplace(this);
 
         //Objects connected to MyInterface
         this.displayAxis = false;
@@ -122,6 +123,11 @@ class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
 
         this.pushMatrix();
+        this.translate(0, 0, 10);
+        this.fireplace.display();
+        this.popMatrix();
+
+        this.pushMatrix();
         this.rotate(Math.PI, 0, 1, 0);
         this.scale(3,3,3);
         this.house.display();
@@ -148,13 +154,13 @@ class MyScene extends CGFscene {
         this.popMatrix();
 
         this.pushMatrix();
-        this.translate(20,0,10);
+        this.translate(-35,0,30);
         this.scale(2,1,2);
         this.hill5.display();
         this.popMatrix();
 
         this.pushMatrix();
-        this.translate(10,0,15);
+        this.translate(-40,0,25);
         this.scale(1, 2, 1);
         this.hill7.display();
         this.popMatrix();
