@@ -19,12 +19,16 @@ class MyFloor extends CGFobject {
 	}
 	
 	display() {
-                this.texture.apply();
-                this.scene.pushMatrix();
-                this.scene.scale(100, 1, 100);
-                this.scene.rotate(-Math.PI/2, 1, 0, 0);
-                this.floor.display();
-                this.scene.popMatrix();
+                for(var i = 100; i > 0; i--){
+                        for(var j = 100; j > 0; j--){
+                                this.texture.apply();
+                                this.scene.pushMatrix();
+                                this.scene.translate(i - 50, 0, j - 50);
+                                this.scene.rotate(-Math.PI/2, 1, 0, 0);
+                                this.floor.display();
+                                this.scene.popMatrix();
+                        }
+                }
 	}
 }
 
