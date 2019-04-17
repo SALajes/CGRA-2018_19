@@ -17,15 +17,15 @@ class MyHouse extends CGFobject {
         this.pillarTex = new CGFappearance(scene);
         this.pillarTex.setAmbient(0.1, 0.1, 0.1, 1.0);
         this.pillarTex.setDiffuse(0.4, 0.4, 0.4, 1.0);
-        this.pillarTex.setSpecular(0.8, 0.8, 0.8, 1.0);
-        this.pillarTex.setShininess(1.0);
+        this.pillarTex.setSpecular(1.0, 1.0, 1.0, 1.0);
+        this.pillarTex.setShininess(2.0);
         this.pillarTex.loadTexture('textures/column.png');
         this.pillarTex.setTextureWrap('REPEAT', 'REPEAT');
 
         this.roofTex = new CGFappearance(scene);
         this.roofTex.setAmbient(0.1, 0.1, 0.1, 1.0);
         this.roofTex.setDiffuse(1.0, 1.0, 1.0, 1.0);
-        this.roofTex.setSpecular(0.2, 0.2, 0.2, 1.0);
+        this.roofTex.setSpecular(0.0, 0.0, 0.0, 1.0);
         this.roofTex.setShininess(1.0);
         this.roofTex.loadTexture('textures/alt_roof.png');
         this.roofTex.setTextureWrap('REPEAT', 'REPEAT');
