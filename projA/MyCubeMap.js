@@ -119,7 +119,7 @@ class MyCubeMap extends CGFobject {
 
         this.nightTex = new CGFappearance(scene);
         this.nightTex.setAmbient(1, 1, 1, 1.0);
-        this.nightTex.setDiffuse(0.5, 0.5, 0.5, 1.0);
+        this.nightTex.setDiffuse(1, 1, 1, 1.0);
         this.nightTex.setSpecular(0, 0, 0, 1.0);
         this.nightTex.setShininess(1.0);
         this.nightTex.loadTexture('textures/forest_night.png');

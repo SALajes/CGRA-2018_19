@@ -38,29 +38,28 @@ class MyScene extends CGFscene {
         this.displayAxis = true;
         this.textures = true;
         this.mode = 0;
-        this.objectComplexity = 0.5;
         this.scaleFactor = 2.0;
 
         //For drop-down menu
         this.modeId = { 'Day': 0, 'Night': 1};
     }
     initLights() {
-        var ambFactor = 0.7;
+        var ambFactor = 0.6;
 
         this.lights[0].setPosition(0.0, 50.0, 0.0, 1.0);
         this.lights[0].setAmbient(1.0*ambFactor, 0.8*ambFactor, 0.6*ambFactor, 1.0);
         this.lights[0].setDiffuse(1.0, 0.8, 0.6, 1.0);
         this.lights[0].setSpecular(1.0, 0.8, 0.6, 1.0);
-        this.lights[0].setConstantAttenuation(0.5);
+        this.lights[0].setConstantAttenuation(0.1);
         this.lights[0].enable();
         this.lights[0].update();
 
         ambFactor = 0.4;
 
         this.lights[1].setPosition(0.0, 50.0, 0.0, 1.0);
-        this.lights[1].setAmbient(0.7*ambFactor, 0.8*ambFactor, 1.0*ambFactor, 1.0);
-        this.lights[1].setDiffuse(0.7, 0.8, 1.0, 1.0);
-        this.lights[1].setSpecular(0.7, 0.8, 1.0, 1.0);
+        this.lights[1].setAmbient(0.2*ambFactor, 0.8*ambFactor, 1.0*ambFactor, 1.0);
+        this.lights[1].setDiffuse(0.2*ambFactor, 0.8*ambFactor, 1.0*ambFactor, 1.0);
+        this.lights[1].setSpecular(0.2*ambFactor, 0.8*ambFactor, 1.0*ambFactor, 1.0);
         this.lights[1].setConstantAttenuation(1);
         this.lights[1].disable();
         this.lights[1].update();
@@ -77,13 +76,7 @@ class MyScene extends CGFscene {
         this.lights[2].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(49, 49, 49), vec3.fromValues(0, 0, 0));
-    }
-    updateObjectComplexity() {
-        this.cone.updateBuffers(this.objectComplexity);
-        this.cylinder.updateBuffers(this.objectComplexity);
-        // this.pyramid.updateBuffers(this.objectComplexity);
-        // this.tree.updateBuffers(this.objectComplexity);
+        this.camera = new CGFcamera(0.8, 0.1, 500, vec3.fromValues(0, 100, -100), vec3.fromValues(0, 0, 0));
     }
     updateTextures(){
         this.enableTextures(this.textures);
@@ -129,6 +122,7 @@ class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
 
         this.pushMatrix();
+        this.rotate(Math.PI, 0, 1, 0);
         this.scale(3,3,3);
         this.house.display();
         this.popMatrix();
