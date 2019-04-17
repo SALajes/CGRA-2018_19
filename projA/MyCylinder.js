@@ -37,13 +37,13 @@ class MyCylinder extends CGFobject {
 
             var normal1 = [
                 ca,
-                1,
+                0,
                 -sa
             ];
 
             var normal2 = [
                 caa,
-                1,
+                0,
                 -saa
             ];
 

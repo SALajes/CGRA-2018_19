@@ -12,18 +12,18 @@ class MySolarPanel extends CGFobject {
     }
     initMaterials(scene) {
         this.panelTex = new CGFappearance(scene);
-        this.panelTex.setAmbient(0.1, 0.1, 0.1, 1.0);
-        this.panelTex.setDiffuse(0.2, 0.2, 0.2, 1.0);
-        this.panelTex.setSpecular(0.8, 0.8, 0.8, 1.0);
-        this.panelTex.setShininess(1.0);
+        this.panelTex.setAmbient(0.05, 0.05, 0.05, 1.0);
+        this.panelTex.setDiffuse(0.0, 0.0, 0.0, 1.0);
+        this.panelTex.setSpecular(1.0, 1.0, 1.0, 1.0);
+        this.panelTex.setShininess(50.0);
         this.panelTex.loadTexture('textures/solar_panel.png');
         this.panelTex.setTextureWrap('REPEAT', 'REPEAT');
 
         this.cylinderTex = new CGFappearance(scene);
         this.cylinderTex.setAmbient(0.1, 0.1, 0.1, 1.0);
-        this.cylinderTex.setDiffuse(0.2, 0.2, 0.2, 1.0);
+        this.cylinderTex.setDiffuse(0.0, 0.0, 0.0, 1.0);
         this.cylinderTex.setSpecular(1.0, 1.0, 1.0, 1.0);
-        this.cylinderTex.setShininess(1.0);
+        this.cylinderTex.setShininess(50.0);
         this.cylinderTex.loadTexture('textures/metal.png');
         this.cylinderTex.setTextureWrap('REPEAT', 'REPEAT');
     }

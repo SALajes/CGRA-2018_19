@@ -111,7 +111,7 @@ class MyCubeMap extends CGFobject {
 
         this.dayTex = new CGFappearance(scene);
         this.dayTex.setAmbient(1, 1, 1, 1.0);
-        this.dayTex.setDiffuse(0.5, 0.5, 0.5, 1.0);
+        this.dayTex.setDiffuse(1, 1, 1, 1.0);
         this.dayTex.setSpecular(0, 0, 0, 1.0);
         this.dayTex.setShininess(1.0);
         this.dayTex.loadTexture('textures/forest.png');
