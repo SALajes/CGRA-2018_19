@@ -45,7 +45,8 @@ class MyScene extends CGFscene {
     }
     initLights() {
         this.lights[0].setPosition(0, 99, 0, 1);
-        this.lights[0].setDiffuse(1.0, 0.5, 0.5, 1.0);
+        // this.lights[0].setAmbient(0.8, 0.8, 0.8, 1.0);
+        this.lights[0].setDiffuse(1.0, 1, 1, 1.0);
         this.lights[0].enable();
         this.lights[0].update();
     }
@@ -99,8 +100,7 @@ class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
         // this.cylinder.display();
         // this.cone.display();
-        this.treeGroup.display();
-        // this.bottomTex.apply();
+        // this.treeGroup.display();
         // this.prism.display();
         // this.pyramid.display();
         this.pushMatrix();
