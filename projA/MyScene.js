@@ -24,6 +24,7 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.treeGroup1 = new MyTreeGroupPatch(this);
         this.treeGroup2 = new MyTreeGroupPatch(this);
+        this.treeGroup3 = new MyTreeGroupPatch(this);
         this.treeRow1 = new MyTreeRowPatch(this);
         this.treeRow2 = new MyTreeRowPatch(this);
         this.house = new MyHouse(this);
@@ -61,18 +62,17 @@ class MyScene extends CGFscene {
         this.lights[1].setAmbient(0.2*ambFactor, 0.8*ambFactor, 1.0*ambFactor, 1.0);
         this.lights[1].setDiffuse(0.2*ambFactor, 0.8*ambFactor, 1.0*ambFactor, 1.0);
         this.lights[1].setSpecular(0.2*ambFactor, 0.8*ambFactor, 1.0*ambFactor, 1.0);
-        this.lights[1].setConstantAttenuation(1);
+        this.lights[1].setConstantAttenuation(0.5);
         this.lights[1].disable();
         this.lights[1].update();
 
         ambFactor = 0.1;
 
-        this.lights[2].setPosition(0.0, 0.5, 0.0, 1.0);
+        this.lights[2].setPosition(0.0, 3.5, -10.0, 1.0);
         this.lights[2].setAmbient(1.0*ambFactor, 0.3*ambFactor, 0.0*ambFactor, 1.0);
         this.lights[2].setDiffuse(1.0, 0.3, 0.0, 1.0);
         this.lights[2].setSpecular(1.0, 0.3, 0.0, 1.0);
-        this.lights[2].setConstantAttenuation(1);
-        this.lights[2].setVisible(true);
+        this.lights[2].setConstantAttenuation(2);
         this.lights[2].disable();
         this.lights[2].update();
     }
@@ -123,8 +123,8 @@ class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
 
         this.pushMatrix();
-        this.translate(0, 0, 10);
-        this.fireplace.display();
+        this.translate(0, 0, -5);
+        this.fireplace.display(this.mode);
         this.popMatrix();
 
         this.pushMatrix();
@@ -141,6 +141,11 @@ class MyScene extends CGFscene {
         this.pushMatrix();
         this.translate(-5,0,-15);
         this.treeRow1.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(-20,0,-10);
+        this.treeGroup2.display();
         this.popMatrix();
 
         this.pushMatrix();
