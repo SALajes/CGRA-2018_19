@@ -33,6 +33,7 @@ class MyScene extends CGFscene {
         this.panel = new MySolarPanel(this);
         this.hill = new MyVoxelHill(this, 5);
         this.map = new MyCubeMap(this);
+        this.floor = new MyFloor(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -100,12 +101,17 @@ class MyScene extends CGFscene {
         // this.bottomTex.apply();
         // this.prism.display();
         // this.pyramid.display();
+
         this.pushMatrix();
         this.scale(3,3,3);
         this.house.display();
         this.popMatrix();
+
+        this.floor.display();
+
         this.map.display();
-        // this.hill.display();
+        
+        //this.hill.display();
         // ---- END Primitive drawing section
     }
 }
