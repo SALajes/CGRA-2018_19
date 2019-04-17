@@ -18,7 +18,7 @@ class MyInterface extends CGFinterface {
         this.gui.add(this.scene, 'textures').name("Textures").onChange(this.scene.updateTextures.bind(this.scene));
         this.gui.add(this.scene, 'scaleFactor', 0.1, 10.0).name('Scale');
         //Drop-down menu
-        this.gui.add(this.scene, 'mode', this.scene.modeId).onChange(this.scene.updateDayNight.bind(this.scene));
+        this.gui.add(this.scene, 'mode', this.scene.modeId).name('Mode').onChange(this.scene.updateDayNight.bind(this.scene));
 
 
         return true;

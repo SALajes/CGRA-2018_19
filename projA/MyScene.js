@@ -35,7 +35,7 @@ class MyScene extends CGFscene {
         this.floor = new MyFloor(this);
 
         //Objects connected to MyInterface
-        this.displayAxis = true;
+        this.displayAxis = false;
         this.textures = true;
         this.mode = 0;
         this.scaleFactor = 2.0;
@@ -76,7 +76,7 @@ class MyScene extends CGFscene {
         this.lights[2].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(0.8, 0.1, 500, vec3.fromValues(0, 100, -100), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(1, 0.1, 500, vec3.fromValues(0, 50, -100), vec3.fromValues(0, 0, 0));
     }
     updateTextures(){
         this.enableTextures(this.textures);
