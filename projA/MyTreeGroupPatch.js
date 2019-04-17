@@ -12,12 +12,12 @@ class MyTreeGroupPatch extends CGFobject {
     }
     display() {
         this.scene.pushMatrix();
-        this.scene.translate(0, 0, 18);
+        this.scene.translate(0, 0, 12);
         this.group3.display();
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
-        this.scene.translate(0, 0, 9);
+        this.scene.translate(0, 0, 6);
         this.group2.display();
         this.scene.popMatrix();
 
