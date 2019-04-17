@@ -23,15 +23,15 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.tree = new MyTree(this, 4, 2, 6,4);
-        this.treeGroup = new MyTreeGroupPatch(this);
+        this.treeGroup1 = new MyTreeGroupPatch(this);
+        this.treeGroup2 = new MyTreeGroupPatch(this);
+        this.treeRow1 = new MyTreeRowPatch(this);
+        this.treeRow2 = new MyTreeRowPatch(this);
         this.house = new MyHouse(this);
-        this.prism = new MyPrism(this, 4, 1, 1);
-        this.cylinder = new MyCylinder(this, 4, 1, 1);
-        this.cone = new MyCone(this, 4, 1, 1);
-        this.pyramid = new MyPyramid(this, 4, 4);
         this.panel = new MySolarPanel(this);
-        this.hill = new MyVoxelHill(this, 5);
+        this.hill5 = new MyVoxelHill(this, 5);
+        this.hill7 = new MyVoxelHill(this, 7);
+        this.hill10 = new MyVoxelHill(this, 10);
         this.map = new MyCubeMap(this);
         this.floor = new MyFloor(this);
 
@@ -95,23 +95,54 @@ class MyScene extends CGFscene {
         this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
         
         // ---- BEGIN Primitive drawing section
-        // this.cylinder.display();
-        // this.cone.display();
-        this.treeGroup.display();
-        // this.bottomTex.apply();
-        // this.prism.display();
-        // this.pyramid.display();
 
         this.pushMatrix();
         this.scale(3,3,3);
         this.house.display();
         this.popMatrix();
 
+        this.pushMatrix();
+        this.translate(-10,0,-25);
+        this.treeRow2.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(-5,0,-15);
+        this.treeRow1.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(-10,0,20);
+        this.treeGroup2.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(-10,0,15);
+        this.treeGroup1.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(20,0,10);
+        this.scale(2,1,2);
+        this.hill5.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(10,0,15);
+        this.scale(1, 2, 1);
+        this.hill7.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(20,0,20);
+        this.scale(1.5, 1.5, 1.5);
+        this.hill10.display();
+        this.popMatrix();
+
         this.floor.display();
 
         this.map.display();
         
-        //this.hill.display();
         // ---- END Primitive drawing section
     }
 }

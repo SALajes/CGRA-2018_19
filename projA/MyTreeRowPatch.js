@@ -11,7 +11,7 @@ class MyTreeRowPatch extends CGFobject {
     }
     display() {
         this.scene.pushMatrix();
-        this.scene.translate(23, 0, 0);
+        this.scene.translate(18, 0, 0);
         this.group2.display();
         this.scene.popMatrix();
 
