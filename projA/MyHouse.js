@@ -10,6 +10,7 @@ class MyHouse extends CGFobject {
         this.roof = new MyPyramid(scene, 4, 4);
         this.pillar = new MyPrism(scene, 8, 0.2, 1);
         this.panel = new MySolarPanel(scene);
+        this.door = new MyDoor(scene);
         this.initMaterials(scene);
     }
     initMaterials(scene) {
@@ -31,6 +32,11 @@ class MyHouse extends CGFobject {
     }
     display() {
         var a = 0.75;
+
+        this.scene.pushMatrix();
+        this.scene.translate(-0.05, 0.90/2, 0.501);
+        this.door.display();
+        this.scene.popMatrix();
 
         this.pillarTex.apply();
         
