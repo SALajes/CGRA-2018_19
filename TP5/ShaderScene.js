@@ -57,6 +57,9 @@ class ShaderScene extends CGFscene {
 
 		this.texture2 = new CGFtexture(this, "textures/FEUP.jpg");
 
+		this.waterTex = new CGFtexture(this, "textures/waterTex.jpg");
+		this.waterMap = new CGFtexture(this, "textures/waterMap.jpg");
+
 		// shaders initialization
 
 		this.testShaders = [
@@ -69,7 +72,8 @@ class ShaderScene extends CGFscene {
 			new CGFshader(this.gl, "shaders/texture3anim.vert", "shaders/texture3anim.frag"),
 			new CGFshader(this.gl, "shaders/texture1.vert", "shaders/sepia.frag"),
 			new CGFshader(this.gl, "shaders/texture1.vert", "shaders/convolution.frag"),
-			new CGFshader(this.gl, "shaders/ex1.vert", "shaders/ex1.frag")
+			new CGFshader(this.gl, "shaders/ex1.vert", "shaders/ex1.frag"),
+			new CGFshader(this.gl, "shaders/water.vert", "shaders/water.frag")
 		];
 
 		// additional texture will have to be bound to texture unit 1 later, when using the shader, with "this.texture2.bind(1);"
@@ -91,7 +95,8 @@ class ShaderScene extends CGFscene {
 			'Animation example': 6,
 			'Sepia': 7,
 			'Convolution': 8,
-			'Exercise 1': 9
+			'Exercise 1': 9,
+			'Water': 10
 		};
 
 		// shader code panels references
@@ -206,9 +211,14 @@ class ShaderScene extends CGFscene {
 		// bind additional texture to texture unit 1
 		this.texture2.bind(1);
 
+		this.waterTex.bind(2);
 		//Uncomment following lines in case texture must have wrapping mode 'REPEAT'
-		//this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_S, this.gl.REPEAT);
-		//this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_T, this.gl.REPEAT);
+		this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_S, this.gl.REPEAT);
+		this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_T, this.gl.REPEAT);
+
+		this.waterMap.bind(3);
+		this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_S, this.gl.REPEAT);
+		this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_T, this.gl.REPEAT);
 
 		if (this.selectedObject==0) {
 			// teapot (scaled and rotated to conform to our axis)
