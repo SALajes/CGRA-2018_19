@@ -103,7 +103,10 @@ class MyScene extends CGFscene {
         // this.popMatrix();
         this.plane.display();
 
+        this.pushMatrix();
+        this.translate(0, 20, 0);
         this.bird.display();
+        this.popMatrix();
 
         this.map.display();
         // ---- END Primitive drawing section

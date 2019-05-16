@@ -24,15 +24,16 @@ class MyBird extends CGFobject {
         this.beekTex.loadTexture('textures/yellow.jpg');
         this.beekTex.setTextureWrap('REPEAT', 'REPEAT');
 
-        this.wingTex = new CGFappearance(scene);
-        this.wingTex.setAmbient(0.1, 0.1, 0.1, 1.0);
-        this.wingTex.setDiffuse(1.0, 1.0, 1.0, 1.0);
-        this.wingTex.setSpecular(0.0, 0.0, 0.0, 1.0);
-        this.wingTex.setShininess(1.0);
-        this.wingTex.loadTexture('textures/blue.jpg');
-        this.wingTex.setTextureWrap('REPEAT', 'REPEAT');
+        this.birdTex = new CGFappearance(scene);
+        this.birdTex.setAmbient(0.1, 0.1, 0.1, 1.0);
+        this.birdTex.setDiffuse(1.0, 1.0, 1.0, 1.0);
+        this.birdTex.setSpecular(0.0, 0.0, 0.0, 1.0);
+        this.birdTex.setShininess(1.0);
+        this.birdTex.loadTexture('textures/blue.jpg');
+        this.birdTex.setTextureWrap('REPEAT', 'REPEAT');
     }
-    display(){        
+    display(){       
+        this.birdTex.apply(); 
         this.scene.pushMatrix();
         this.scene.translate(0.75/2, 0, 0);
         this.scene.scale(-1,1,1);
