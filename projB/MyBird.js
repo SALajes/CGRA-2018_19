@@ -12,6 +12,7 @@ class MyBird extends CGFobject {
         this.body = new MyUnitCubeQuad(scene,'textures/blue.jpg','textures/blue.jpg','textures/blue.jpg');
         this.wings_low = new MyQuad(scene);
         this.wings_high = new MyTriangle(scene);
+        this.tail = new MyTriangle(scene);
         this.initMaterials(scene);
     }
     initMaterials(scene) {
@@ -31,10 +32,23 @@ class MyBird extends CGFobject {
         this.wingTex.loadTexture('textures/blue.jpg');
         this.wingTex.setTextureWrap('REPEAT', 'REPEAT');
     }
-    display(){
+    display(){        
         this.scene.pushMatrix();
-        this.scene.translate(0.5, 0, 0);
+        this.scene.translate(0.75/2, 0, 0);
+        this.scene.scale(-1,1,1);
+        this.scene.rotate(-Math.PI/8, 0, 0, 1);
         this.display_wing();
+        this.scene.popMatrix();
+
+        this.scene.pushMatrix();
+        this.scene.translate(-0.75/2, 0, 0);
+        this.scene.rotate(-Math.PI/8, 0, 0, 1);
+        this.display_wing();
+        this.scene.popMatrix();
+
+        this.scene.pushMatrix();
+        this.scene.translate(0, 0.50, -0.75/2);
+        this.display_tail();
         this.scene.popMatrix();
 
         this.beekTex.apply();
@@ -60,6 +74,38 @@ class MyBird extends CGFobject {
         this.body.display();
     }
     display_wing(){
+        this.scene.pushMatrix();
+        this.scene.translate(-1, 0, 0);
+        this.scene.rotate(3*Math.PI/4, 0, 0, 1);
+        this.scene.rotate(Math.PI/2, 0, 1, 0);
+        this.scene.scale(1/4, 1, 1);
+        this.scene.rotate(-3*Math.PI/4, 0, 0, 1);
+        this.wings_high.display();
+        this.scene.popMatrix();
 
+        this.scene.pushMatrix();
+        this.scene.translate(-0.5, 0, 0);
+        this.scene.rotate(Math.PI/2, 0, 0, 1);
+        this.scene.rotate(Math.PI/2, 0, 1, 0);
+        this.scene.scale(Math.sqrt(2)/2, 1, 1);
+        this.wings_low.display();
+        this.scene.popMatrix();
+    }
+    display_tail(){
+        this.scene.pushMatrix();
+        this.scene.scale(-1/2, 1/2, 1/2);
+        this.scene.rotate(-Math.PI/3, 0, 0, 1);
+        this.scene.rotate(-Math.PI/2, 1, 0, 0);
+        this.scene.translate(1, 1, 0);
+        this.tail.display();
+        this.scene.popMatrix();
+
+        this.scene.pushMatrix();
+        this.scene.scale(1/2, 1/2, 1/2);
+        this.scene.rotate(-Math.PI/3, 0, 0, 1);
+        this.scene.rotate(-Math.PI/2, 1, 0, 0);
+        this.scene.translate(1, 1, 0);
+        this.tail.display();
+        this.scene.popMatrix();
     }
 }
