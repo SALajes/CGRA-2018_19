@@ -1,7 +1,7 @@
 /**
-* MyScene
-* @constructor
-*/
+ * MyScene
+ * @constructor
+ */
 class MyScene extends CGFscene {
     constructor() {
         super();
@@ -23,7 +23,7 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.plane = new Plane(this, 32);
+        this.plane = new MyTerrain(this);
         this.house = new MyHouse(this);
         this.map = new MyCubeMap(this);
         this.bird = new MyBird(this);
@@ -47,8 +47,23 @@ class MyScene extends CGFscene {
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
     }
-    update(t){
-
+    checkKeys() {
+        var text = "Keys pressed: ";
+        var keysPressed = false;
+        // Check for key codes e.g. in https://keycode.info/
+        if (this.gui.isKeyPressed("KeyW")) {
+            text += " W ";
+            keysPressed = true;
+        }
+        if (this.gui.isKeyPressed("KeyS")) {
+            text += " S ";
+            keysPressed = true;
+        }
+        if (keysPressed)
+            console.log(text);
+    }
+    update(t) {
+        this.checkKeys();
     }
 
     display() {
@@ -63,13 +78,13 @@ class MyScene extends CGFscene {
         this.applyViewMatrix();
 
         // Draw axis
-        if(this.displayAxis)
+        if (this.displayAxis)
             this.axis.display();
-        
+
         // ---- BEGIN Primitive drawing section
         this.pushMatrix();
         this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
-        
+
 
         //Apply default appearance
         this.setDefaultAppearance();
@@ -86,6 +101,7 @@ class MyScene extends CGFscene {
         // this.scale(60, 60, 1);
         // this.plane.display();
         // this.popMatrix();
+        this.plane.display();
 
         this.bird.display();
 
