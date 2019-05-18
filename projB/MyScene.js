@@ -19,6 +19,7 @@ class MyScene extends CGFscene {
         this.gl.enable(this.gl.CULL_FACE);
         this.gl.depthFunc(this.gl.LEQUAL);
         this.enableTextures(true);
+        //update() method will be closed as close to possible to once every 50ms
         this.setUpdatePeriod(50);
 
         //Initialize scene objects
@@ -27,6 +28,9 @@ class MyScene extends CGFscene {
         this.house = new MyHouse(this);
         this.map = new MyCubeMap(this);
         this.bird = new MyBird(this);
+
+        //For time related animations
+        this.timeFactor = 0;
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -64,6 +68,9 @@ class MyScene extends CGFscene {
     }
     update(t) {
         this.checkKeys();
+        //console.log("Time factor increment: ", t - this.timeFactor);
+        this.timeFactor = t / 200;
+        
     }
 
     display() {
@@ -90,22 +97,19 @@ class MyScene extends CGFscene {
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
-        // this.pushMatrix();
-        // this.translate(7, 0, 3);
-        // this.scale(2,2,2);
-        // this.house.display();
-        // this.popMatrix();
+        this.pushMatrix();
+        this.translate(-5, 0, -7);
+        this.scale(2,2,2);
+        this.house.display();
+        this.popMatrix();
 
-        // this.pushMatrix();
-        // this.rotate(-0.5*Math.PI, 1, 0, 0);
-        // this.scale(60, 60, 1);
         // this.plane.display();
-        // this.popMatrix();
-        this.plane.display();
 
         this.pushMatrix();
-        this.translate(0, 20, 0);
-        this.bird.display();
+        this.translate(0, 3, 0);
+        this.translate(0, Math.cos(this.timeFactor)/2, 0);
+
+        this.bird.animated_display(this.timeFactor);
         this.popMatrix();
 
         this.map.display();
