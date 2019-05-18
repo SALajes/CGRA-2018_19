@@ -3,7 +3,7 @@
  * @constructor
  */
 class MyBird extends CGFobject {
-    constructor(scene, orientation, speed, starting_x, starting_y, starting_z) {
+    constructor(scene) {
         super(scene);
 
         this.beek = new MyPyramid(scene, 4, 6);
@@ -15,12 +15,12 @@ class MyBird extends CGFobject {
         this.tail = new MyTriangle(scene);
 
         //Control variables
-        this.default_orientation = orientation;
-        this.default_speed = speed;
-        this.default_x = starting_x;
-        this.default_y = starting_y;
-        this.default_z = starting_z;
-        
+        this.orientation = 0;
+        this.speed = 0;
+        this.x = 0;
+        this.y = 0;
+        this.z = 0;
+
         this.initMaterials(scene);
     }
     initMaterials(scene) {
@@ -42,6 +42,10 @@ class MyBird extends CGFobject {
     }
     display() {
         this.scene.pushMatrix();
+        this.scene.translate(this.x, this.y, this.z);
+        this.scene.rotate(this.orientation, 0, 1, 0);
+
+        this.scene.pushMatrix();
         this.scene.translate(0.75 / 2, 0, 0);
         this.scene.scale(-1, 1, 1);
         this.scene.rotate(-Math.PI / 8, 0, 0, 1);
@@ -60,22 +64,28 @@ class MyBird extends CGFobject {
         this.scene.popMatrix();
 
         this.display_body();
+        this.scene.popMatrix();
     }
     animated_display(t) {
         this.scene.pushMatrix();
-        this.scene.translate(-0.75/2, 0, 0);
-        this.scene.rotate(-Math.PI/8 * Math.sin(t), 0, 0, 1);
+        this.scene.translate(this.x, this.y, this.z);
+        this.scene.rotate(this.orientation, 0, 1, 0);
+
+        this.scene.pushMatrix();
+        this.scene.translate(-0.75 / 2, 0, 0);
+        this.scene.rotate(-Math.PI / 8 * Math.sin(t), 0, 0, 1);
         this.display_wing();
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
-        this.scene.translate(0.75/2, 0, 0);
-        this.scene.scale(-1,1,1);
-        this.scene.rotate(-Math.PI/8 * Math.sin(t), 0, 0, 1);
+        this.scene.translate(0.75 / 2, 0, 0);
+        this.scene.scale(-1, 1, 1);
+        this.scene.rotate(-Math.PI / 8 * Math.sin(t), 0, 0, 1);
         this.display_wing();
         this.scene.popMatrix();
 
         this.display_body();
+        this.scene.popMatrix();
     }
     display_body() {
         this.beekTex.apply();
@@ -101,7 +111,6 @@ class MyBird extends CGFobject {
 
         this.body.display();
     }
-
     display_wing() {
         this.birdTex.apply();
 
@@ -140,5 +149,22 @@ class MyBird extends CGFobject {
         this.scene.translate(1, 1, 0);
         this.tail.display();
         this.scene.popMatrix();
+    }
+    update() {
+        this.x = this.x + this.speed * Math.sin(this.orientation);
+        this.z = this.z + this.speed * Math.cos(this.orientation);
+    }
+    reset() {
+        this.x = 0;
+        this.y = 0;
+        this.z = 0;
+        this.speed = 0;
+        this.orientation = 0;
+    }
+    turn(v) {
+        this.orientation += v;
+    }
+    accelerate(v) {
+        this.speed += v;
     }
 }

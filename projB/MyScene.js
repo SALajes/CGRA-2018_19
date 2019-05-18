@@ -59,17 +59,34 @@ class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyW")) {
             text += " W ";
             keysPressed = true;
+            this.bird.accelerate(this.speedFactor);
         }
         if (this.gui.isKeyPressed("KeyS")) {
             text += " S ";
             keysPressed = true;
+            this.bird.accelerate(-this.speedFactor);
+        }
+        if (this.gui.isKeyPressed("KeyA")) {
+            text += " A ";
+            keysPressed = true;
+            this.bird.turn(Math.PI/2);
+        }
+        if (this.gui.isKeyPressed("KeyD")) {
+            text += " D ";
+            keysPressed = true;
+            this.bird.turn(-Math.PI/2);
+        }
+        if (this.gui.isKeyPressed("KeyR")) {
+            text += " R ";
+            keysPressed = true;
+            this.bird.reset();
         }
         if (keysPressed)
             console.log(text);
     }
     update(t) {
         this.checkKeys();
-        //console.log("Time factor increment: ", t - this.timeFactor);
+        this.bird.update();
         this.timeFactor = t / 200;
         
     }
@@ -109,8 +126,7 @@ class MyScene extends CGFscene {
         this.pushMatrix();
         this.translate(0, 3, 0);
         this.translate(0, Math.cos(this.timeFactor)/2, 0);
-
-        this.bird.animated_display(this.timeFactor);
+        this.bird.animated_display(this.timeFactor * this.speedFactor);
         this.popMatrix();
 
         this.map.display();
