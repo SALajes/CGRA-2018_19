@@ -32,10 +32,14 @@ class MyScene extends CGFscene {
         //For time related animations
         this.timeFactor = 0;
 
+        //Acceleration and turning constants
+        this.accelerationFactor = 0.1;
+        this.turnFactor = Math.PI/8;
+
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.scaleFactor = 2.0;
-        this.speedFactor = 0.1;
+        this.speedFactor = 1.0;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -59,22 +63,22 @@ class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyW")) {
             text += " W ";
             keysPressed = true;
-            this.bird.accelerate(this.speedFactor);
+            this.bird.accelerate(this.accelerationFactor);
         }
         if (this.gui.isKeyPressed("KeyS")) {
             text += " S ";
             keysPressed = true;
-            this.bird.accelerate(-this.speedFactor);
+            this.bird.accelerate(-this.accelerationFactor);
         }
         if (this.gui.isKeyPressed("KeyA")) {
             text += " A ";
             keysPressed = true;
-            this.bird.turn(Math.PI/8);
+            this.bird.turn(this.turnFactor);
         }
         if (this.gui.isKeyPressed("KeyD")) {
             text += " D ";
             keysPressed = true;
-            this.bird.turn(-Math.PI/8);
+            this.bird.turn(-this.turnFactor);
         }
         if (this.gui.isKeyPressed("KeyR")) {
             text += " R ";
@@ -86,9 +90,8 @@ class MyScene extends CGFscene {
     }
     update(t) {
         this.checkKeys();
-        this.bird.update();
+        this.bird.update(this.speedFactor);
         this.timeFactor = t * 2* Math.PI/ 1000;
-        
     }
 
     display() {
@@ -121,19 +124,11 @@ class MyScene extends CGFscene {
         this.house.display();
         this.popMatrix();
 
-<<<<<<< HEAD
         this.plane.display();
-=======
-        // this.pushMatrix();
-        // this.scale();
-        this.plane.display();
-        // this.popMatrix();
->>>>>>> 863a764aee2643a9c2599e8a7d0bca1383d65dc8
 
         this.pushMatrix();
         this.translate(0, 3, 0);
-        this.translate(0, Math.cos(this.timeFactor)/2, 0);
-        this.bird.animated_display(10*this.timeFactor * this.speedFactor);
+        this.bird.animated_display(this.timeFactor*this.speedFactor);
         this.popMatrix();
 
         this.map.display();
