@@ -13,5 +13,5 @@ void main() {
 	vec4 color = texture2D(uSampler1, vTextureCoord);
 	vec4 altimetry = texture2D(uSampler3, vec2(0.5,1.0 - offset));
 	
-	gl_FragColor = color*0.3 + altimetry*0.7;
+	gl_FragColor = color * 0.4 + altimetry * 0.6;
 }
