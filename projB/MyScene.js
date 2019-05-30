@@ -87,7 +87,7 @@ class MyScene extends CGFscene {
     update(t) {
         this.checkKeys();
         this.bird.update();
-        this.timeFactor = t / 200;
+        this.timeFactor = t * 2* Math.PI/ 1000;
         
     }
 
@@ -121,7 +121,7 @@ class MyScene extends CGFscene {
         this.house.display();
         this.popMatrix();
 
-        // this.plane.display();
+        this.plane.display();
 
         this.pushMatrix();
         this.translate(0, 3, 0);
