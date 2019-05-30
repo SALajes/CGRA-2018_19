@@ -154,7 +154,6 @@ class MyBird extends CGFobject {
     update(speedFactor) {
         this.x = this.x + this.speed * Math.sin(this.orientation) * speedFactor;
         this.z = this.z + this.speed * Math.cos(this.orientation) * speedFactor;
-        //this.orientation = this.orientation * speedFactor;
     }
     reset() {
         this.x = 0;

@@ -18,7 +18,7 @@ class MyLSystem extends CGFobject {
     initGrammar(){
         this.grammar = {
             "F": new MyRectangle(this.scene, 0.2, 1),
-            "X": new MyRectangle(this.scene, 0.5, 0.5)
+            "X": new MyRectangle(this.scene, 0.2, 1)
         };
     }
 
@@ -41,7 +41,7 @@ class MyLSystem extends CGFobject {
         this.scale = Math.pow(_scale, this.iterations-1);
 
         // desenvolve a sequencia de desenvolvimento do Sistema L
-        this.iterate()
+        this.iterate();
      }
 
   

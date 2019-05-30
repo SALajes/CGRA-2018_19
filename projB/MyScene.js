@@ -28,7 +28,9 @@ class MyScene extends CGFscene {
         this.house = new MyHouse(this);
         this.map = new MyCubeMap(this);
         this.bird = new MyBird(this);
+        this.lightning = new MyLightning(this);
 
+        this.makeLightning = false;
         //For time related animations
         this.timeFactor = 0;
 
@@ -85,11 +87,21 @@ class MyScene extends CGFscene {
             keysPressed = true;
             this.bird.reset();
         }
+        if (this.gui.isKeyPressed("KeyL")) {
+            text += " L ";
+            keysPressed = true;
+            this.makeLightning = true;
+        }
         if (keysPressed)
             console.log(text);
     }
     update(t) {
         this.checkKeys();
+        if(this.makeLightning){
+            this.lightning.doGenerate();
+            this.makeLightning = false;
+        }
+
         this.bird.update(this.speedFactor);
         this.timeFactor = t * 2* Math.PI/ 1000;
     }
@@ -118,20 +130,21 @@ class MyScene extends CGFscene {
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
-        this.pushMatrix();
-        this.translate(-9, 0, -9);
-        this.scale(2,2,2);
-        this.house.display();
-        this.popMatrix();
+        // this.pushMatrix();
+        // this.translate(-9, 0, -9);
+        // this.scale(2,2,2);
+        // this.house.display();
+        // this.popMatrix();
 
-        this.plane.display();
+        // this.plane.display();
 
-        this.pushMatrix();
-        this.translate(0, 3, 0);
-        this.bird.animated_display(this.timeFactor*this.speedFactor);
-        this.popMatrix();
+        // this.pushMatrix();
+        // this.translate(0, 3, 0);
+        // this.bird.animated_display(this.timeFactor*this.speedFactor);
+        // this.popMatrix();
 
-        this.map.display();
+        this.lightning.display();
+        // this.map.display();
         // ---- END Primitive drawing section
     }
 }
