@@ -35,7 +35,7 @@ class MyScene extends CGFscene {
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.scaleFactor = 2.0;
-        this.speedFactor = 1.0;
+        this.speedFactor = 0.1;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -69,12 +69,12 @@ class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyA")) {
             text += " A ";
             keysPressed = true;
-            this.bird.turn(Math.PI/2);
+            this.bird.turn(Math.PI/8);
         }
         if (this.gui.isKeyPressed("KeyD")) {
             text += " D ";
             keysPressed = true;
-            this.bird.turn(-Math.PI/2);
+            this.bird.turn(-Math.PI/8);
         }
         if (this.gui.isKeyPressed("KeyR")) {
             text += " R ";
@@ -116,17 +116,24 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
         this.pushMatrix();
-        this.translate(-5, 0, -7);
+        this.translate(-9, 0, -9);
         this.scale(2,2,2);
         this.house.display();
         this.popMatrix();
 
+<<<<<<< HEAD
         this.plane.display();
+=======
+        // this.pushMatrix();
+        // this.scale();
+        this.plane.display();
+        // this.popMatrix();
+>>>>>>> 863a764aee2643a9c2599e8a7d0bca1383d65dc8
 
         this.pushMatrix();
         this.translate(0, 3, 0);
         this.translate(0, Math.cos(this.timeFactor)/2, 0);
-        this.bird.animated_display(this.timeFactor * this.speedFactor);
+        this.bird.animated_display(10*this.timeFactor * this.speedFactor);
         this.popMatrix();
 
         this.map.display();
