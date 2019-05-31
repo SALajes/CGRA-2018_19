@@ -7,8 +7,8 @@ class MySegment extends CGFobject {
     initMaterials(scene) {
         this.material = new CGFappearance(scene);
         this.material.setAmbient(1.0, 1.0, 1.0, 1.0);
-        this.material.setDiffuse(0.5, 0.5, 0.5, 1.0);
-        this.material.setSpecular(0.5, 0.5, 0.5, 1.0);
+        this.material.setDiffuse(1.0, 1.0, 1.0, 1.0);
+        this.material.setSpecular(1.0, 1.0, 1.0, 1.0);
         this.material.setShininess(2.0);
     }
     display() {

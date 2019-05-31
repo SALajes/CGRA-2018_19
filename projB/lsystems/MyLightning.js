@@ -4,6 +4,7 @@ class MyLightning extends MyLSystem {
 
         this.initValues();
         this.initGrammar();
+
     }
 
     initValues() {
@@ -25,35 +26,37 @@ class MyLightning extends MyLSystem {
             {
                 "F": [ "FF" ],
                 "X": [ "F[-X][X]F[-X]+FX",
-                        "[X+X+X--FX]+F-X[F-X+X]",
-                        "[X-X-X]FF+X--X[+X+F]",
-                        "[-X]X[+X]",
-                        "F-X+X+XF" ]
+                        "F[+X][X]F[+X]-FX",
+                        "[-X]X[+X]"]
             },
             this.angle,
             this.iterations,
             this.scaleFactor
         );
     }
-    display() {
-        this.scene.pushMatrix();
-        this.scene.translate(0, 10, 0);
-        this.scene.scale(1.0,-1.0,1.0);
-        super.display();
-        this.scene.popMatrix();
-    }
     update(t) {
         this.elapsedTime = t - this.startTime;
-        this.depth = (this.axiom.length - this.depth) / this.elapsedTime;
+        if(this.elapsedTime != 0)
+            this.depth = (this.elapsedTime * this.axiom.length)/ 1000;
+        console.log(this.depth);
+        if(this.elapsedTime >= 1000){
+            console.log(this.axiom.length);
+            return true;
+        }
     }
     startAnimation(t) {
-        super.iterate();
+        this.doGenerate();
         this.depth = 0;
         this.startTime = t;
+        this.angle = Math.random();
+        console.log(this.startTime);
     }
     display(){
         this.scene.pushMatrix();
-        this.scene.scale(this.scale, this.scale, this.scale);
+        this.scene.rotate(this.angle, 0, 1, 0);
+        this.scene.translate(0, 50, 0);
+        this.scene.scale(5.0,-2.0,1.0);
+        //this.scene.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
 
         var i;
 

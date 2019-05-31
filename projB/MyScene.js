@@ -31,6 +31,7 @@ class MyScene extends CGFscene {
         this.lightning = new MyLightning(this);
 
         this.makeLightning = false;
+        this.lightningAnimation = false;
         //For time related animations
         this.timeFactor = 0;
 
@@ -98,8 +99,13 @@ class MyScene extends CGFscene {
     update(t) {
         this.checkKeys();
         if(this.makeLightning){
-            this.lightning.doGenerate();
+            this.lightning.startAnimation(t);
+            this.lightningAnimation = true;
             this.makeLightning = false;
+        }
+        if(this.lightningAnimation){
+            if(this.lightning.update(t))
+                this.lightningAnimation = false;
         }
 
         this.bird.update(this.speedFactor);
@@ -130,21 +136,22 @@ class MyScene extends CGFscene {
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
-        // this.pushMatrix();
-        // this.translate(-9, 0, -9);
-        // this.scale(2,2,2);
-        // this.house.display();
-        // this.popMatrix();
+        this.pushMatrix();
+        this.translate(-9, 0, -9);
+        this.scale(2,2,2);
+        this.house.display();
+        this.popMatrix();
 
-        // this.plane.display();
+        this.plane.display();
 
-        // this.pushMatrix();
-        // this.translate(0, 3, 0);
-        // this.bird.animated_display(this.timeFactor*this.speedFactor);
-        // this.popMatrix();
+        this.pushMatrix();
+        this.translate(0, 3, 0);
+        this.bird.animated_display(this.timeFactor*this.speedFactor);
+        this.popMatrix();
+        this.map.display();
 
-        this.lightning.display();
-        // this.map.display();
+        if(this.lightningAnimation)
+            this.lightning.display();
         // ---- END Primitive drawing section
     }
 }
