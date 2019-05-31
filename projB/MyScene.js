@@ -35,14 +35,16 @@ class MyScene extends CGFscene {
 
         //LSPlants
         this.plants = [];
-        this.numPlants = 10;
+        this.numPlants = 15;
 
-        var i;
-        for(i=0; i<this.numPlants; ++i){
-            var xTranslate = Math.floor(Math.random() * 20) - 10;
-            var zTranslate = Math.floor(Math.random() * 20) - 10 - 10;
+        var ang = 0;
+        var angInc = (2*Math.PI)/this.numPlants;
+        for(var i=0; i<this.numPlants; ++i){
+            var xTranslate = Math.sin(ang) * 18;
+            var zTranslate = Math.cos(ang) * 18;
             this.plants.push(new MyLSplant(this, xTranslate, 0, zTranslate));
             this.plants[i].doGenerate();
+            ang += angInc;
         }
 
         this.makeLightning = false;
@@ -66,7 +68,7 @@ class MyScene extends CGFscene {
         this.lights[0].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(80, 70, 80), vec3.fromValues(0, 15, 0));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(96, 84, 96), vec3.fromValues(0, 15, 0));
     }
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
