@@ -49,6 +49,7 @@ class MyBird extends CGFobject {
     }
     animated_display(t) {
         this.scene.pushMatrix();
+        this.scene.translate(0, Math.cos(t)/2, 0);
         this.scene.translate(this.x, this.y, this.z);
         this.scene.rotate(this.orientation, 0, 1, 0);
 
@@ -142,9 +143,10 @@ class MyBird extends CGFobject {
         this.tail.display();
         this.scene.popMatrix();
     }
-    update() {
-        this.x = this.x + this.speed * Math.sin(this.orientation);
-        this.z = this.z + this.speed * Math.cos(this.orientation);
+    update(speedFactor) {
+        this.x = this.x + this.speed * Math.sin(this.orientation) * speedFactor;
+        this.z = this.z + this.speed * Math.cos(this.orientation) * speedFactor;
+        //this.orientation = this.orientation * speedFactor;
     }
     reset() {
         this.x = 0;
