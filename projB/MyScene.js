@@ -19,8 +19,8 @@ class MyScene extends CGFscene {
         this.gl.enable(this.gl.CULL_FACE);
         this.gl.depthFunc(this.gl.LEQUAL);
         this.enableTextures(true);
-        //update() method will be closed as close to possible to once every 50ms
-        this.setUpdatePeriod(50);
+        //update() method will be called as close to possible to once every 50ms
+        this.setUpdatePeriod(30);
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
@@ -29,6 +29,18 @@ class MyScene extends CGFscene {
         this.map = new MyCubeMap(this);
         this.bird = new MyBird(this);
         this.lightning = new MyLightning(this);
+
+        //LSPlants
+        this.plants = [];
+        this.numPlants = 10;
+
+        var i;
+        for(i=0; i<this.numPlants; ++i){
+            var xTranslate = Math.floor(Math.random() * 20) - 10;
+            var zTranslate = Math.floor(Math.random() * 20) - 10 - 10;
+            this.plants.push(new MyLSplant(this, xTranslate, 0, zTranslate));
+            this.plants[i].doGenerate();
+        }
 
         this.makeLightning = false;
         this.lightningAnimation = false;
@@ -51,7 +63,7 @@ class MyScene extends CGFscene {
         this.lights[0].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(45, 45, 45), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(80, 70, 80), vec3.fromValues(0, 15, 0));
     }
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -128,17 +140,14 @@ class MyScene extends CGFscene {
             this.axis.display();
 
         // ---- BEGIN Primitive drawing section
-        this.pushMatrix();
-        this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
-
-
         //Apply default appearance
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
         this.pushMatrix();
-        this.translate(-9, 0, -9);
-        this.scale(2,2,2);
+        this.translate(-25, 2.5, -0);
+        this.scale(4,4,4);
+        this.rotate(Math.PI/2, 0, 1, 0);
         this.house.display();
         this.popMatrix();
 
@@ -146,9 +155,14 @@ class MyScene extends CGFscene {
 
         this.pushMatrix();
         this.translate(0, 3, 0);
+        this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
         this.bird.animated_display(this.timeFactor*this.speedFactor);
         this.popMatrix();
         this.map.display();
+
+        for(var i = 0; i < this.numPlants; i++) {
+            this.plants[i].display();
+        }
 
         if(this.lightningAnimation)
             this.lightning.display();

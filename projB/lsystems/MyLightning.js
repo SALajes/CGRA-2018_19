@@ -55,8 +55,7 @@ class MyLightning extends MyLSystem {
         this.scene.pushMatrix();
         this.scene.rotate(this.angle, 0, 1, 0);
         this.scene.translate(0, 50, 0);
-        this.scene.scale(5.0,-2.0,1.0);
-        //this.scene.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
+        this.scene.scale(2.0,-2.0,1.0);
 
         var i;
 
