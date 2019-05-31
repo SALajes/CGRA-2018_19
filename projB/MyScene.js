@@ -34,18 +34,7 @@ class MyScene extends CGFscene {
         this.sphere = new MySemiSphere(this, 10, 5);
 
         //LSPlants
-        this.plants = [];
-        this.numPlants = 15;
-
-        var ang = 0;
-        var angInc = (2*Math.PI)/this.numPlants;
-        for(var i=0; i<this.numPlants; ++i){
-            var xTranslate = Math.sin(ang) * 18;
-            var zTranslate = Math.cos(ang) * 18;
-            this.plants.push(new MyLSplant(this, xTranslate, 0, zTranslate));
-            this.plants[i].doGenerate();
-            ang += angInc;
-        }
+        this.generatePlants();
 
         this.makeLightning = false;
         this.lightningAnimation = false;
@@ -60,6 +49,20 @@ class MyScene extends CGFscene {
         this.displayAxis = true;
         this.scaleFactor = 2.0;
         this.speedFactor = 1.0;
+    }
+    generatePlants() {
+        this.plants = [];
+        this.numPlants = 15;
+        
+        var ang = 0;
+        var angInc = (2 * Math.PI) / this.numPlants;
+        for (var i = 0; i < this.numPlants; ++i) {
+            var xTranslate = Math.sin(ang) * 18;
+            var zTranslate = Math.cos(ang) * 18;
+            this.plants.push(new MyLSplant(this, xTranslate, 0, zTranslate));
+            this.plants[i].doGenerate();
+            ang += angInc;
+        }
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
