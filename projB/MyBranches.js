@@ -6,23 +6,26 @@ class MyBranches extends CGFobject {
     constructor(scene) {
         super(scene);
 
-        this.branchs = [];
+        this.branches = [];
+        this.x = [];
+        this.z = [];
+        this.angle = [];
 
-        this.brach_number = (Math.random() * 4) + 4;
+        this.branch_number = (Math.random() * 4) + 4;
 
-        for(var i=0; i < brach_number; i++){
-            branchs.push(new MyTreeBranch(this.scene));
+        for(var i=0; i < this.branch_number; i++){
+            this.branches.push(new MyTreeBranch(this.scene));
+            this.x.push((Math.random() * 20) - 10);
+            this.z.push((Math.random() * 12) - 10);
+            this.angle.push(Math.PI*(Math.random() * 360)/180);
         }
     }
     display(){
-        for(var i = 0; i < branch_number; i++){
-            angle = Math.random() * 360;
-
-            angle = Math.PI*angle/180;
-
+        for(var i = 0; i < this.branch_number; i++){
             this.scene.pushMatrix();
-            this.scene.rotate(angle, 0, 1, 0);
-            this.branch.display();
+            this.scene.translate(this.x[i], 0, this.z[i]);
+            this.scene.rotate(this.angle[i], 0, 1, 0);
+            this.branches[i].display();
             this.scene.popMatrix();
         }
     }

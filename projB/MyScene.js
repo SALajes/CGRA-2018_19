@@ -28,6 +28,9 @@ class MyScene extends CGFscene {
         this.house = new MyHouse(this);
         this.map = new MyCubeMap(this);
         this.bird = new MyBird(this);
+        this.branches = new MyBranches(this);
+        this.nest = new MyNest(this);
+        this.sphere = new MySemiSphere(this, 10, 5);
 
         //For time related animations
         this.timeFactor = 0;
@@ -121,13 +124,14 @@ class MyScene extends CGFscene {
         this.house.display();
         this.popMatrix();
 
-        // this.pushMatrix();
-        // this.scale();
+        this.branches.display();
+
         this.plane.display();
-        // this.popMatrix();
+
+        this.nest.display();
 
         this.pushMatrix();
-        this.translate(0, 3, 0);
+        this.translate(0, 10, 0);
         this.translate(0, Math.cos(this.timeFactor)/2, 0);
         this.bird.animated_display(10*this.timeFactor * this.speedFactor);
         this.popMatrix();
