@@ -2,8 +2,8 @@
 include=function(){function f(){var a=this.readyState;(!a||/ded|te/.test(a))&&(c--,!c&&e&&d())}var a=arguments,b=document,c=a.length,d=a[c-1],e=d.call;e&&c--;for(var g,h=0;c>h;h++)g=b.createElement("script"),g.src=arguments[h],g.async=!0,g.onload=g.onerror=g.onreadystatechange=f,(b.head||b.getElementsByTagName("head")[0]).appendChild(g)};
 serialInclude=function(a){var b=console,c=serialInclude.l;if(a.length>0)c.splice(0,0,a);else b.log("Done!");if(c.length>0){if(c[0].length>1){var d=c[0].splice(0,1);b.log("Loading "+d+"...");include(d,function(){serialInclude([]);});}else{var e=c[0][0];c.splice(0,1);e.call();};}else b.log("Finished.");};serialInclude.l=new Array();
 
-serialInclude(['../lib/CGF.js','MyScene.js', 'MyTriangle.js', 'MyInterface.js', 'Plane.js', 'MyCone.js', 'MyCubeMap.js', 'MyCylinder.js', 'MyDoor.js', 'MyHouse.js', 'MyPrism.js', 'MyPyramid.js', 'MyQuad.js', 'MySolarPanel.js', 'MyUnitCubeQuad.js', 'MyBird.js', 'MyTerrain.js', 'MyTreeBranch.js',
-    'lsystems/MyLSystem.js', 'lsystems/MyLSPlant.js', 'lsystems/MyLightning.js', 'lsystems/MyBranch.js', 'lsystems/MyLeaf.js', 'lsystems/MyRectangle.js', 'lsystems/MySegment.js', 'MyBranches.js', 'MyNest.js', 'MySemiSphere.js', 'MySphere.js',
+serialInclude(['../lib/CGF.js','MyScene.js', 'primitives/MyTriangle.js', 'MyInterface.js', 'primitives/Plane.js', 'primitives/MyCone.js', 'primitives/MyCubeMap.js', 'primitives/MyCylinder.js', 'house/MyDoor.js', 'house/MyHouse.js', 'primitives/MyPrism.js', 'primitives/MyPyramid.js', 'primitives/MyQuad.js', 'house/MySolarPanel.js', 'house/MyUnitCubeQuad.js', 'bird/MyBird.js', 'bird/MyTerrain.js', 'bird/MyTreeBranch.js',
+    'lsystems/MyLSystem.js', 'lsystems/MyLSPlant.js', 'lsystems/MyLightning.js', 'lsystems/MyBranch.js', 'lsystems/MyLeaf.js', 'primitives/MyRectangle.js', 'lsystems/MySegment.js', 'bird/MyBranches.js', 'bird/MyNest.js', 'primitives/MySemiSphere.js', 'primitives/MySphere.js',
 
 main=function()
 {
