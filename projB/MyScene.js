@@ -29,6 +29,9 @@ class MyScene extends CGFscene {
         this.map = new MyCubeMap(this);
         this.bird = new MyBird(this);
         this.lightning = new MyLightning(this);
+        this.branches = new MyBranches(this);
+        this.nest = new MyNest(this);
+        this.sphere = new MySemiSphere(this, 10, 5);
 
         //LSPlants
         this.plants = [];
@@ -151,7 +154,11 @@ class MyScene extends CGFscene {
         this.house.display();
         this.popMatrix();
 
+        this.branches.display();
+
         this.plane.display();
+
+        this.nest.display();
 
         this.pushMatrix();
         this.translate(0, 3, 0);

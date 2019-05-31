@@ -6,12 +6,12 @@ class MyTreeBranch extends CGFobject {
     constructor(scene) {
         super(scene);
 
-        radius = (Math.random() * 1)/2 + 0.25;
-        height = (Math.random() * 2)/2 + 1;
+        var radius = (Math.random() * 1)/8 + 0.05;
+        var height = (Math.random() * 2)/8 + 1;
         
         this.branch = new MyCylinder(scene, 5, radius, height);
         
-        initMaterials(scene);
+        this.initMaterials(scene);
     }
     initMaterials(scene) {
         this.branchTex = new CGFappearance(scene);
@@ -23,6 +23,7 @@ class MyTreeBranch extends CGFobject {
         this.branchTex.setTextureWrap('REPEAT', 'REPEAT');
     }
     display(){
+        this.branchTex.apply();
         this.scene.pushMatrix();
         this.scene.rotate(Math.PI/2, 1, 0, 0);
         this.branch.display();
