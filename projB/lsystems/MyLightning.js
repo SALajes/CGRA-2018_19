@@ -38,9 +38,7 @@ class MyLightning extends MyLSystem {
         this.elapsedTime = t - this.startTime;
         if(this.elapsedTime != 0)
             this.depth = (this.elapsedTime * this.axiom.length)/ 1000;
-        console.log(this.depth);
         if(this.elapsedTime >= 1000){
-            console.log(this.axiom.length);
             return true;
         }
     }
@@ -49,7 +47,6 @@ class MyLightning extends MyLSystem {
         this.depth = 0;
         this.startTime = t;
         this.angle = Math.random();
-        console.log(this.startTime);
     }
     display(){
         this.scene.pushMatrix();

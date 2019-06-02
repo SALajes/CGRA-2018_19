@@ -17,7 +17,7 @@ class MyBird extends CGFobject {
         this.orientation = 0;
         this.speed = 0;
         this.x = 0;
-        this.y = 0;
+        this.y = 3;
         this.z = 0;
 
         this.initMaterials(scene);
@@ -143,10 +143,24 @@ class MyBird extends CGFobject {
         this.tail.display();
         this.scene.popMatrix();
     }
-    catchBranch(){
-        this.y = -Math.sin(offset / (Math.PI*120))*3;
-        
-        
+    startAnimation(updatePeriod){
+        this.distSegment = updatePeriod * this.y / 1000;
+        this.isDescending = true;
+    }
+    catchAnimation() {
+        if(this.isDescending)
+            this.y -= this.distSegment;
+        else
+            this.y += this.distSegment;
+
+        if(this.y <= 0){
+            this.isDescending = false;
+        }
+        else if(this.y >= 3){
+            return false;
+        }
+
+        return true;
     }
     update(speedFactor) {
         this.x = this.x + this.speed * Math.sin(this.orientation) * speedFactor;
@@ -154,7 +168,7 @@ class MyBird extends CGFobject {
     }
     reset() {
         this.x = 0;
-        this.y = 0;
+        this.y = 3;
         this.z = 0;
         this.speed = 0;
         this.orientation = 0;

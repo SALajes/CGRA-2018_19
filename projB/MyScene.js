@@ -19,9 +19,10 @@ class MyScene extends CGFscene {
         this.gl.enable(this.gl.CULL_FACE);
         this.gl.depthFunc(this.gl.LEQUAL);
         this.enableTextures(true);
+        this.updatePeriod = 1000/30;
 
         //update() method will be closed as close to possible to once every 50ms
-        this.setUpdatePeriod(1000/30);
+        this.setUpdatePeriod(this.updatePeriod);
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
@@ -36,11 +37,12 @@ class MyScene extends CGFscene {
 
         //LSPlants
         this.generatePlants();
-
+        
+        //animation variables
         this.makeLightning = false;
         this.lightningAnimation = false;
-
         this.Pkey = false;
+        this.birdAnimation = false;
 
         //For time related animations
         this.timeFactor = 0;
@@ -120,7 +122,8 @@ class MyScene extends CGFscene {
         if(this.gui.isKeyPressed("KeyP")){
             text += " P ";
             keysPressed = true;
-            this.Pkey = true;
+            if(!this.birdAnimation)
+                this.Pkey = true;
         }
         if (keysPressed)
             console.log(text);
@@ -136,11 +139,13 @@ class MyScene extends CGFscene {
             if(this.lightning.update(t))
                 this.lightningAnimation = false;
         }
-
         if(this.Pkey){
-            //start counter
             this.Pkey = false;
-            this.bird.catchBranch();
+            this.bird.startAnimation(this.updatePeriod);
+            this.birdAnimation = true;
+        }
+        if(this.birdAnimation){
+            this.birdAnimation = this.bird.catchAnimation();
         }
 
         this.bird.update(this.speedFactor);
@@ -164,7 +169,6 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
         this.pushMatrix();
-        this.translate(0, 3, 0);
         this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
         this.bird.animated_display(this.timeFactor*this.speedFactor);
         this.popMatrix();
