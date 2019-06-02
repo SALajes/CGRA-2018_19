@@ -143,6 +143,11 @@ class MyBird extends CGFobject {
         this.tail.display();
         this.scene.popMatrix();
     }
+    catchBranch(){
+        this.y = -Math.sin(offset / (Math.PI*120))*3;
+        
+        
+    }
     update(speedFactor) {
         this.x = this.x + this.speed * Math.sin(this.orientation) * speedFactor;
         this.z = this.z + this.speed * Math.cos(this.orientation) * speedFactor;

@@ -19,8 +19,9 @@ class MyScene extends CGFscene {
         this.gl.enable(this.gl.CULL_FACE);
         this.gl.depthFunc(this.gl.LEQUAL);
         this.enableTextures(true);
-        //update() method will be called as close to possible to once every 50ms
-        this.setUpdatePeriod(30);
+
+        //update() method will be closed as close to possible to once every 50ms
+        this.setUpdatePeriod(1000/30);
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
@@ -38,6 +39,9 @@ class MyScene extends CGFscene {
 
         this.makeLightning = false;
         this.lightningAnimation = false;
+
+        this.Pkey = false;
+
         //For time related animations
         this.timeFactor = 0;
 
@@ -47,7 +51,7 @@ class MyScene extends CGFscene {
 
         //Objects connected to MyInterface
         this.displayAxis = true;
-        this.scaleFactor = 2.0;
+        this.scaleFactor = 1.0;
         this.speedFactor = 1.0;
     }
     generatePlants() {
@@ -112,6 +116,11 @@ class MyScene extends CGFscene {
             text += " L ";
             keysPressed = true;
             this.makeLightning = true;
+        }    
+        if(this.gui.isKeyPressed("KeyP")){
+            text += " P ";
+            keysPressed = true;
+            this.Pkey = true;
         }
         if (keysPressed)
             console.log(text);
@@ -126,6 +135,12 @@ class MyScene extends CGFscene {
         if(this.lightningAnimation){
             if(this.lightning.update(t))
                 this.lightningAnimation = false;
+        }
+
+        if(this.Pkey){
+            //start counter
+            this.Pkey = false;
+            this.bird.catchBranch();
         }
 
         this.bird.update(this.speedFactor);
@@ -148,6 +163,12 @@ class MyScene extends CGFscene {
             this.axis.display();
 
         // ---- BEGIN Primitive drawing section
+        this.pushMatrix();
+        this.translate(0, 3, 0);
+        this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
+        this.bird.animated_display(this.timeFactor*this.speedFactor);
+        this.popMatrix();
+
         //Apply default appearance
         this.setDefaultAppearance();
 
@@ -165,11 +186,6 @@ class MyScene extends CGFscene {
 
         this.nest.display();
 
-        this.pushMatrix();
-        this.translate(0, 3, 0);
-        this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
-        this.bird.animated_display(this.timeFactor*this.speedFactor);
-        this.popMatrix();
         this.map.display();
 
         for(var i = 0; i < this.numPlants; i++) {
