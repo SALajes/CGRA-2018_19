@@ -151,7 +151,19 @@ class MyScene extends CGFscene {
         this.bird.update(this.speedFactor);
         this.timeFactor = t * 2* Math.PI/ 1000;
     }
-
+    verifyBranchBirdPosition(x, z){
+        var branch = this.branches.getBranch(x, z);
+        
+        if(branch != null){
+            this.bird.catchBranch(branch);
+        }
+    }
+    verifyNestBirdPosition(x, z){
+        if(this.checkNest(x, z)){
+            this.nest.addBranch(this.bird.getBranch());
+            this.bird.releaseBranch();
+        }
+    }
     display() {
         // ---- BEGIN Background, camera and axis setup
         // Clear image and depth buffer everytime we update the scene

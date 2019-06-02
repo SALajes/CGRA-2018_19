@@ -29,4 +29,4 @@ class MyTreeBranch extends CGFobject {
         this.branch.display();
         this.scene.popMatrix();
     }
-}
+}    

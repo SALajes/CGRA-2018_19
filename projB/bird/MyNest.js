@@ -34,4 +34,13 @@ class MyNest extends CGFobject {
         this.nest.display();
         this.scene.popMatrix();
     }
+    checkNest(x, z){
+        if(Math.abs(x) < 0.5 && Math.abs(z) < 0.5){
+            return true;
+        }
+        else return false;
+    }
+    addBranch(branch){
+        this.branch = branch;
+    }
 }
