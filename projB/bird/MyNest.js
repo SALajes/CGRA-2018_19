@@ -25,9 +25,9 @@ class MyNest extends CGFobject {
     display(){
         for(var i = 0; i < this.branches.length; i++){
             this.scene.pushMatrix();
-            this.scene.rotate(this.positions[i] * Math.PI /180);
-            this.scene.translate(0,0.3,0);
-            this.branch.display();
+            this.scene.rotate(this.positions[i] * Math.PI /180, 0, 1, 0);
+            this.scene.translate(0,0.7,0);
+            this.branches[i].display();
             this.scene.popMatrix();
         }
 
