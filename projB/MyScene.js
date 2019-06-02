@@ -159,7 +159,7 @@ class MyScene extends CGFscene {
         }
     }
     verifyNestBirdPosition(x, z){
-        if(this.checkNest(x, z)){
+        if(this.nest.checkNest(x, z)){
             this.nest.addBranch(this.bird.getBranch());
             this.bird.releaseBranch();
         }

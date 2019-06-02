@@ -165,7 +165,8 @@ class MyBird extends CGFobject {
         if(this.y <= 0){
             this.isDescending = false;
 
-            if(this.branch != null){
+            if(this.branch == null){
+                console.log("does this even go here");
                 this.scene.verifyBranchBirdPosition(this.x, this.z);
             }
             else this.scene.verifyNestBirdPosition(this.x, this.z);

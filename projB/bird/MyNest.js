@@ -35,7 +35,7 @@ class MyNest extends CGFobject {
         this.scene.popMatrix();
     }
     checkNest(x, z){
-        if(Math.abs(x) < 0.5 && Math.abs(z) < 0.5){
+        if(Math.abs(x) < 5 && Math.abs(z) < 5){
             return true;
         }
         else return false;
