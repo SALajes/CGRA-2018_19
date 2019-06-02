@@ -35,10 +35,9 @@ class MyBranches extends CGFobject {
     }
     getBranch(x, z){
         for(var i = 0; i < this.branch_number; i++){
-            console.log("x1: " + x + "; x2: " + x[i] + " ; z1: " + z + "; z2: " + z[i]);
-            if(Math.abs(x - this.x[i]) < 5 && Math.abs(z - this.z[i]) < 5 && !this.draw[i]){
+            if(Math.abs(Math.abs(x) - Math.abs(this.x[i])) < 4 && Math.abs(Math.abs(z) - Math.abs((this.z[i]))) < 4 && this.draw[i]){
                 this.draw[i] = false;
-                return branches[i];
+                return this.branches[i];
             }
         }
         

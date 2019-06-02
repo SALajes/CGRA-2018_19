@@ -75,7 +75,7 @@ class MyBird extends CGFobject {
 
         if(this.branch != null){
             this.scene.pushMatrix();
-            this.scene.translate(0, -0.10, 0);
+            this.scene.translate(0, -1, 0);
             this.branch.display();
             this.scene.popMatrix();
         }
@@ -166,7 +166,6 @@ class MyBird extends CGFobject {
             this.isDescending = false;
 
             if(this.branch == null){
-                console.log("does this even go here");
                 this.scene.verifyBranchBirdPosition(this.x, this.z);
             }
             else this.scene.verifyNestBirdPosition(this.x, this.z);

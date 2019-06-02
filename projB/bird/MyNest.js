@@ -8,7 +8,8 @@ class MyNest extends CGFobject {
         
         this.nest = new MySemiSphere(scene, 10, 5);
 
-        this.branch = null;
+        this.branches = [];
+        this.positions = [];
         
         this.initMaterials(scene);
     }
@@ -22,13 +23,17 @@ class MyNest extends CGFobject {
         this.nestTex.setTextureWrap('REPEAT', 'REPEAT');
     }
     display(){
-        if(this.branch != null){
+        for(var i = 0; i < this.branches.length; i++){
+            this.scene.pushMatrix();
+            this.scene.rotate(this.positions[i] * Math.PI /180);
+            this.scene.translate(0,0.3,0);
             this.branch.display();
+            this.scene.popMatrix();
         }
 
         this.nestTex.apply();
         this.scene.pushMatrix();
-        this.scene.scale(1, 0.3, 1);
+        this.scene.scale(2, 0.3, 2);
         this.scene.translate(0, 1, 0);
         this.scene.rotate(Math.PI/2, 1, 0, 0);
         this.nest.display();
@@ -41,6 +46,7 @@ class MyNest extends CGFobject {
         else return false;
     }
     addBranch(branch){
-        this.branch = branch;
+        this.branches.push(branch);
+        this.positions.push(Math.random() * 360);
     }
 }
