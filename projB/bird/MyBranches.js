@@ -29,4 +29,17 @@ class MyBranches extends CGFobject {
             this.scene.popMatrix();
         }
     }
+    getBranch(x, z){
+        for(var i = 0; i < this.branch_number; i++){
+            if(x == this.x[i] && z == this.z[i]){
+                x.remove.splice(i, 1);
+                z.remove.splice(i, 1);
+                branch_number -= 1;
+                this.branches.splice(i, 1);
+                return branches[i];
+            }
+        }
+        
+        return null;
+    }
 }

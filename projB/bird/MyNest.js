@@ -7,6 +7,8 @@ class MyNest extends CGFobject {
         super(scene);
         
         this.nest = new MySemiSphere(scene, 10, 5);
+
+        this.branch = null;
         
         this.initMaterials(scene);
     }
@@ -20,6 +22,10 @@ class MyNest extends CGFobject {
         this.nestTex.setTextureWrap('REPEAT', 'REPEAT');
     }
     display(){
+        if(this.branch != null){
+            this.branch.display();
+        }
+
         this.nestTex.apply();
         this.scene.pushMatrix();
         this.scene.scale(1, 0.3, 1);

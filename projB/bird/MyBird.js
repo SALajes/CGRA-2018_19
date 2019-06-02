@@ -13,6 +13,8 @@ class MyBird extends CGFobject {
         this.wings_high = new MyTriangle(scene);
         this.tail = new MyTriangle(scene);
 
+        this.branch = null;
+
         //Control variables
         this.orientation = 0;
         this.speed = 0;
@@ -70,6 +72,13 @@ class MyBird extends CGFobject {
         this.scene.translate(0, 0.50, -0.5);
         this.display_tail();
         this.scene.popMatrix();
+
+        if(this.branch != null){
+            this.scene.pushMatrix();
+            this.scene.translate(this.x, this.y, this.z);
+            this.branch.display();
+            this.scene.popMatrix();
+        }
 
         this.display_body();
         this.scene.popMatrix();
@@ -161,6 +170,12 @@ class MyBird extends CGFobject {
         }
 
         return true;
+    }    
+    catchBranch(branch){        
+        this.branch = branch;
+    }
+    releaseBranch(){
+        this.branch = null;
     }
     update(speedFactor) {
         this.x = this.x + this.speed * Math.sin(this.orientation) * speedFactor;
